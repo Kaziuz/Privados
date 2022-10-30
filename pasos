@@ -1,6 +1,17 @@
 1. Tener un proyecto corriendo con vue3 y tailwind
 2. Tener el layout css como lo quiere tony (datos dummy)
-3. Hacer la animación básica como lo quiere (datos dummy)
+-> Tenemos un carousel, que en vez de tener por point-indicator 1 imagen va a contener nueve distribuidas en una grilla
+-> Cada grilla de 3x3 realizada con grid css
+
+|__|___|___|
+|__|___|___|
+|__|___|___|
+
+2.a. como poner los datos en la pantalla
+-> Inicialmente se hace un chunk de los datos para obtener los primeros 9, un array con objectos
+-> se crea un array nuevo a partir de desordenar esos nueve (shuffle)
+-> se pintan esos 9
+3. Hacer la animación básica como lo quiere (datos dummy) (opacity 1 opacity 0)
 4. buscar e instalar libreia google sheet
 5. Conectar una tabla y traerme los datos
 6. conectar tabla con ui
