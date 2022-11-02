@@ -40,10 +40,9 @@ import { reactive, watchEffect, ref } from 'vue'
 export default {
   setup () {
     const opacity = false
-    const time = 1000 // 5000 milisec to 5 seconds
     const currentData = ref({})
     const startProgram = ref(false)
-    let stepperProgram = () => {}
+    let interval = () => {}
     let frame = () => {}
     const privateData = reactive([
       { id: 0,
@@ -86,20 +85,20 @@ export default {
       { id: 26,question:'Pregunta 27', answer: 'Respuesta 9', nickname: 'anonimo 9', age: '23 años' },
     ])
 
+    // https://stackoverflow.com/questions/32307483/in-javascript-how-to-create-an-accurate-timer-with-milliseconds
     watchEffect(() => {
       if (startProgram.value) {
-        stepperProgram = () => {
-          let counter = 0
+        const startTime = Date.now()
+        interval = () => {
           frame = setInterval(() => {
-            counter++
-            if (counter < privateData.length) {
-              currentData.value = privateData[counter]
-            } else if (counter === parseInt(privateData.length)) {
-              counter = 0
-            }
-          }, time) 
+            const elapsedTime = Date.now() - startTime
+            const secondsfloat = (elapsedTime / 1000).toFixed(3)
+            const seconds = (elapsedTime / 1000).toFixed(0) % privateData.length
+            console.log('seconds float', secondsfloat)
+            currentData.value = privateData[seconds]
+          }, 100)
         }
-        stepperProgram()
+        interval()
       } else {
         clearInterval(frame)
       }
