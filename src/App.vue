@@ -1,10 +1,20 @@
 <template>
   <div class="relative d-block font-sans">
     <div class="w-full h-screen absolute px-1 py-1 bg-black text-white">
+      {{ time }}
+      <span class="text-4xl animate__animated animate__fadeInDown animate__delay-1s animate__slower">
+        HOLA
+      </span>
+      <span class="text-4xl animate__animated animate__fadeOutDown animate__delay-2s animate__slower">
+        CHAO
+      </span>
       <!-- en el eje x jusitfy-start  justify-center justify-end -->
       <!-- en el eje x items-start items-center items-start items-ens-->
       <div class="w-full h-1/2 flex justify-center items-center">
-        <span class="text-4xl">
+        <!-- <span class="text-4xl">
+          {{ currentData.question }}
+        </span> -->
+        <span class="text-4xl animate__animated animate__fadeInDown">
           {{ currentData.question }}
         </span>
       </div>
@@ -43,7 +53,8 @@ export default {
     const currentData = ref({})
     const startProgram = ref(false)
     let interval = () => {}
-    let frame = () => {}
+    let startTime = null
+    const time = ref(0)
     const privateData = reactive([
       { id: 0,
         question:'¿De qué se alimentan los koalas?',
@@ -85,26 +96,36 @@ export default {
       { id: 26,question:'Pregunta 27', answer: 'Respuesta 9', nickname: 'anonimo 9', age: '23 años' },
     ])
 
-    // https://stackoverflow.com/questions/32307483/in-javascript-how-to-create-an-accurate-timer-with-milliseconds
+    const start = () => {
+      startTime = Date.now()
+      interval = setInterval(() => {
+        const elapsedTime = Date.now() - startTime
+        const secondsfloat = (elapsedTime / 1000).toFixed(1)
+        updateDisplay(secondsfloat)
+      }, 100)
+    }
+
+    const stop = () => {
+      clearInterval(interval)
+    }
+
+    const updateDisplay = milliseconds => {
+      const seconds = parseInt(milliseconds)
+      time.value = seconds
+      console.log('seconds float', seconds)
+      const frameData = seconds % privateData.length
+      currentData.value = privateData[frameData]
+    }
+
     watchEffect(() => {
       if (startProgram.value) {
-        const startTime = Date.now()
-        interval = () => {
-          frame = setInterval(() => {
-            const elapsedTime = Date.now() - startTime
-            const secondsfloat = (elapsedTime / 1000).toFixed(3)
-            const seconds = (elapsedTime / 1000).toFixed(0) % privateData.length
-            console.log('seconds float', secondsfloat)
-            currentData.value = privateData[seconds]
-          }, 100)
-        }
-        interval()
+        start()
       } else {
-        clearInterval(frame)
+        stop()
       }
     })
 
-    return { opacity, currentData, startProgram }
+    return { opacity, currentData, startProgram, time }
   }
 }
 </script>
