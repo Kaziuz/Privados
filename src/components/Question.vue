@@ -7,8 +7,6 @@
         {{ question ? question : '¿De qué se alimentan los koalas?' }}
       </span>
     </div>
-    <div class="">seconds{{ seconds }}</div>
-    <div class="">milliseconds{{ milliseconds }}</div>
 </template>
 
 <!-- <script>
@@ -22,7 +20,6 @@ export default {
 <script setup>
 defineProps({
   question: String,
-  seconds: Number,
   milliseconds: Number
 })
 </script>

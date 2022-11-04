@@ -7,10 +7,8 @@
       <span class="text-4xl animate__animated animate__fadeOutDown animate__delay-2s animate__slower">
         CHAO
       </span> -->
-      <!-- {{ timeMilliseconds }} -->
       <app-question
         :question="currentData && currentData.question"
-        :seconds="timeSeconds"
         :milliseconds="timeMilliseconds"
       />
       <app-answer
@@ -42,23 +40,25 @@ export default {
     'app-answer': Answer
   },
   setup () {
-    const opacity = false
     const currentData = ref({})
     const startProgram = ref(false)
     let interval = () => {}
     let startTime = null
-    const timeSeconds = ref(0)
     const timeMilliseconds = ref(0)
+    const timeXSecond = 11
+    const totalDurationAnimation = 5 // 4 seconds really
+    let currentTimeAnimation = ref(0)
+    let nextFrame = ref(0)
     const privateData = reactive([
       { id: 0,
-        question:'¿De qué se alimentan los koalas?',
+        question:'pregunta 1',
         answer: 'Los koalas son animales herbívoros que tienen una dieta poco variada. Se alimentan de hojas de eucalipto.',
         nickname: 'anonimo 1',
         age: '23 años'
       },
       {
         id: 1,
-        question:'¿De qué se alimentan los koalas?',
+        question:'pregunta 2',
         answer: 'Los koalas son animales herbívoros que tienen una dieta poco variada. Se alimentan de hojas de eucalipto.',
         nickname: 'anonimo 2',
         age: '23 años'
@@ -94,9 +94,8 @@ export default {
       startTime = Date.now()
       interval = setInterval(() => {
         const elapsedTime = Date.now() - startTime
-        const seconds = (elapsedTime / 1000).toFixed(1)
         const milliseconds = elapsedTime / 100
-        updateDisplay(seconds, milliseconds)
+        updateDisplay(milliseconds)
       }, 100)
     }
 
@@ -104,19 +103,15 @@ export default {
       clearInterval(interval)
     }
 
-    const frame = (seconds) => {
-      const steperFrame = seconds % 12
-      console.log('stepper', steperFrame)
-      const frameData = seconds % privateData.length
-      currentData.value = privateData[frameData]
-    }
-
-    const updateDisplay = (secds, millis) => {
-      let seconds = parseInt(secds)
+    const updateDisplay = (millis) => {
       let milliseconds = parseInt(millis)
-      timeSeconds.value = seconds
       timeMilliseconds.value = milliseconds
-      frame(seconds)
+      const spendAsecond = milliseconds % timeXSecond
+      // console.log('spendAsecond', spendAsecond)
+      // console.log('milliseconds', milliseconds)
+      if (spendAsecond === 0) {
+        currentTimeAnimation.value = (currentTimeAnimation.value + 1) % totalDurationAnimation
+      }
     }
 
     watchEffect(() => {
@@ -127,7 +122,26 @@ export default {
       }
     })
 
-    return { opacity, currentData, startProgram, timeSeconds, timeMilliseconds}
+    watchEffect(() => {
+      if (currentTimeAnimation.value) {
+        console.log('currentTimeAnimation', currentTimeAnimation.value)
+        if (currentTimeAnimation.value === 1) {
+          nextFrame.value = nextFrame.value + 1
+        }
+      }
+    })
+
+    watchEffect(() => {
+      if (nextFrame.value) {
+        const currentFrameData = nextFrame.value % privateData.length
+        console.log('CURRENT ROW', currentFrameData)
+        // console.log('TOTAL ROW DATA', privateData.length)
+        currentData.value = privateData[currentFrameData]
+        // console.log('next frame', nextFrame.value)
+      }
+    })
+
+    return { currentData, startProgram, timeMilliseconds}
   }
 }
 </script>

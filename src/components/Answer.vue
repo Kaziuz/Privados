@@ -27,7 +27,6 @@ export default {
 // import { ref } from 'vue'
 defineProps({
   data: Object,
-  seconds: Number,
   milliseconds: Number
 })
 </script>
