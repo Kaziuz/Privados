@@ -104,13 +104,19 @@ export default {
       clearInterval(interval)
     }
 
+    const frame = (seconds) => {
+      const steperFrame = seconds % 12
+      console.log('stepper', steperFrame)
+      const frameData = seconds % privateData.length
+      currentData.value = privateData[frameData]
+    }
+
     const updateDisplay = (secds, millis) => {
       let seconds = parseInt(secds)
       let milliseconds = parseInt(millis)
       timeSeconds.value = seconds
       timeMilliseconds.value = milliseconds
-      const frameData = seconds % privateData.length
-      currentData.value = privateData[frameData]
+      frame(seconds)
     }
 
     watchEffect(() => {
