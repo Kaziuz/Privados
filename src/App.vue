@@ -1,34 +1,18 @@
 <template>
   <div class="relative d-block font-sans">
-    <div class="w-full h-screen absolute px-1 py-1 bg-black text-white">
-      {{ time }}
-      <span class="text-4xl animate__animated animate__fadeInDown animate__delay-1s animate__slower">
+    <div class="w-full h-screen px-1 py-1 bg-black text-white">
+      <!-- <span class="text-4xl animate__animated animate__fadeInDown animate__delay-1s animate__slower">
         HOLA
       </span>
       <span class="text-4xl animate__animated animate__fadeOutDown animate__delay-2s animate__slower">
         CHAO
-      </span>
-      <!-- en el eje x jusitfy-start  justify-center justify-end -->
-      <!-- en el eje x items-start items-center items-start items-ens-->
-      <div class="w-full h-1/2 flex justify-center items-center">
-        <!-- <span class="text-4xl">
-          {{ currentData.question }}
-        </span> -->
-        <span class="text-4xl animate__animated animate__fadeInDown">
-          {{ currentData.question }}
-        </span>
-      </div>
-      <div class="w-full h-1/2 flex flex-col justify-end items-center">
-        <span class="text-2xl italic">
-          {{ currentData.answer }}
-        </span>
-        <div class="flex justify-end items-end">
-          <span class="text-xl">
-            {{ currentData.nickname }}
-          </span>
-          <span class="text-sm ml-2" style="line-height:24px">{{ currentData.age }}</span>
-        </div>
-      </div>
+      </span> -->
+      <app-question
+        :question="currentData && currentData.question"
+      />
+      <app-answer
+        :data="currentData && currentData"
+      />
       <button
         @click="startProgram = true"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -47,14 +31,20 @@
 
 <script>
 import { reactive, watchEffect, ref } from 'vue'
+import Question from './components/Question.vue'
+import Answer from './components/Answer.vue'
 export default {
+  components: {
+    'app-question': Question,
+    'app-answer': Answer
+  },
   setup () {
     const opacity = false
     const currentData = ref({})
     const startProgram = ref(false)
     let interval = () => {}
     let startTime = null
-    const time = ref(0)
+    const timeSeconds = ref(0)
     const privateData = reactive([
       { id: 0,
         question:'¿De qué se alimentan los koalas?',
@@ -111,7 +101,7 @@ export default {
 
     const updateDisplay = milliseconds => {
       const seconds = parseInt(milliseconds)
-      time.value = seconds
+      timeSeconds.value = seconds
       console.log('seconds float', seconds)
       const frameData = seconds % privateData.length
       currentData.value = privateData[frameData]
@@ -125,7 +115,7 @@ export default {
       }
     })
 
-    return { opacity, currentData, startProgram, time }
+    return { opacity, currentData, startProgram, timeSeconds }
   }
 }
 </script>
