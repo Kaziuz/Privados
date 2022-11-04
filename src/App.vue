@@ -8,13 +8,16 @@
         CHAO
       </span> -->
       <app-question
+        class="top-content"
         :question="currentData && currentData.question"
         :milliseconds="timeMilliseconds"
       />
       <app-answer
+        class="bottom-content"
         :data="currentData && currentData"
       />
-      <button
+      <!-- Control for develop pruposes -->
+      <!-- <button
         @click="startProgram = true"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
@@ -25,13 +28,14 @@
         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
       >
         stop
-      </button>
+      </button> -->
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, watchEffect, ref } from 'vue'
+import { reactive, watchEffect, ref, onMounted } from 'vue'
+import animateCSS from './composables/animateCSS.js'
 import Question from './components/Question.vue'
 import Answer from './components/Answer.vue'
 export default {
@@ -46,7 +50,7 @@ export default {
     let startTime = null
     const timeMilliseconds = ref(0)
     const timeXSecond = 11
-    const totalDurationAnimation = 5 // 4 seconds really
+    const totalDurationAnimation = 10 // 4 seconds really
     let currentTimeAnimation = ref(0)
     let nextFrame = ref(0)
     const privateData = reactive([
@@ -98,11 +102,9 @@ export default {
         updateDisplay(milliseconds)
       }, 100)
     }
-
     const stop = () => {
       clearInterval(interval)
     }
-
     const updateDisplay = (millis) => {
       let milliseconds = parseInt(millis)
       timeMilliseconds.value = milliseconds
@@ -141,6 +143,19 @@ export default {
       }
     })
 
+    onMounted(() => {
+      const classTop = '.top-content'
+      const question = document.querySelector(classTop)
+      animateCSS(classTop, 'fadeIn').then(msg => {
+        console.log(`finished ${classTop} animation`)
+      })
+      question.style.setProperty('--animate-duration', '6s')
+      // element.classList.add('animate__animated', 'animate__fadeIn')
+      // detect when animation ends
+      // element.addEventListener('animationend', () => {
+      //   console.log('element finsh animation')
+      // })
+    })
     return { currentData, startProgram, timeMilliseconds}
   }
 }
