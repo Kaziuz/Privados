@@ -17,7 +17,7 @@
         :data="currentData && currentData"
       />
       <!-- Control for develop pruposes -->
-      <!-- <button
+      <button
         @click="startProgram = true"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
@@ -28,13 +28,13 @@
         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
       >
         stop
-      </button> -->
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, watchEffect, ref, onMounted } from 'vue'
+import { reactive, watchEffect, ref } from 'vue'
 import animateCSS from './composables/animateCSS.js'
 import Question from './components/Question.vue'
 import Answer from './components/Answer.vue'
@@ -116,6 +116,36 @@ export default {
       }
     }
 
+    const addFadeIn = (classTop) => {
+      console.log('run fadeIn')
+      // const question = document.querySelector(classTop)
+      // question.style.animationFillMode = 'forwards'
+      // question.classList.add('opacity-1')
+      // console.log(`start fadeIN animation`)
+      animateCSS(classTop, 'fadeIn')
+      animateCSS(classTop, 'slower')
+      animateCSS(classTop, 'delay-1s')
+      // question.style.setProperty('--animate-duration', '3s')
+        
+      // question.classList.add('animate__animated', 'animate__fadeIn', 'animate__delay-1s', 'animate__slower')
+      // detect when animation ends
+      // element.addEventListener('animationend', () => {
+      //   console.log('element finsh animation')
+      // })
+    }
+
+    const addFadeOut = (classTop) => {
+      console.log('run fadeOut')
+      // const question = document.querySelector(classTop)
+      // question.style.animationFillMode = 'forwards'
+      // question.classList.add('opacity-0')
+      // console.log(`start fadeOut animation`)
+      // animateCSS(classTop, 'fadeOut')
+      // animateCSS(classTop, 'slower')
+      // animateCSS(classTop, 'delay-1s')
+      // question.style.setProperty('--animate-duration', '3s')
+    }
+
     watchEffect(() => {
       if (startProgram.value) {
         start()
@@ -125,37 +155,28 @@ export default {
     })
 
     watchEffect(() => {
+      const classTop = '.top-content'
       if (currentTimeAnimation.value) {
         console.log('currentTimeAnimation', currentTimeAnimation.value)
         if (currentTimeAnimation.value === 1) {
+          addFadeIn(classTop)
           nextFrame.value = nextFrame.value + 1
         }
+        else if (currentTimeAnimation.value === 9) {
+          addFadeOut(classTop)
+        } 
       }
     })
 
     watchEffect(() => {
       if (nextFrame.value) {
         const currentFrameData = nextFrame.value % privateData.length
-        console.log('CURRENT ROW', currentFrameData)
+        // console.log('CURRENT ROW', currentFrameData)
         // console.log('TOTAL ROW DATA', privateData.length)
         currentData.value = privateData[currentFrameData]
-        // console.log('next frame', nextFrame.value)
       }
     })
 
-    onMounted(() => {
-      const classTop = '.top-content'
-      const question = document.querySelector(classTop)
-      animateCSS(classTop, 'fadeIn').then(msg => {
-        console.log(`finished ${classTop} animation`)
-      })
-      question.style.setProperty('--animate-duration', '6s')
-      // element.classList.add('animate__animated', 'animate__fadeIn')
-      // detect when animation ends
-      // element.addEventListener('animationend', () => {
-      //   console.log('element finsh animation')
-      // })
-    })
     return { currentData, startProgram, timeMilliseconds}
   }
 }
