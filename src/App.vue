@@ -7,8 +7,11 @@
       <span class="text-4xl animate__animated animate__fadeOutDown animate__delay-2s animate__slower">
         CHAO
       </span> -->
+      <!-- {{ timeMilliseconds }} -->
       <app-question
         :question="currentData && currentData.question"
+        :seconds="timeSeconds"
+        :milliseconds="timeMilliseconds"
       />
       <app-answer
         :data="currentData && currentData"
@@ -45,6 +48,7 @@ export default {
     let interval = () => {}
     let startTime = null
     const timeSeconds = ref(0)
+    const timeMilliseconds = ref(0)
     const privateData = reactive([
       { id: 0,
         question:'¿De qué se alimentan los koalas?',
@@ -90,8 +94,9 @@ export default {
       startTime = Date.now()
       interval = setInterval(() => {
         const elapsedTime = Date.now() - startTime
-        const secondsfloat = (elapsedTime / 1000).toFixed(1)
-        updateDisplay(secondsfloat)
+        const seconds = (elapsedTime / 1000).toFixed(1)
+        const milliseconds = elapsedTime / 100
+        updateDisplay(seconds, milliseconds)
       }, 100)
     }
 
@@ -99,10 +104,11 @@ export default {
       clearInterval(interval)
     }
 
-    const updateDisplay = milliseconds => {
-      const seconds = parseInt(milliseconds)
+    const updateDisplay = (secds, millis) => {
+      let seconds = parseInt(secds)
+      let milliseconds = parseInt(millis)
       timeSeconds.value = seconds
-      console.log('seconds float', seconds)
+      timeMilliseconds.value = milliseconds
       const frameData = seconds % privateData.length
       currentData.value = privateData[frameData]
     }
@@ -115,7 +121,7 @@ export default {
       }
     })
 
-    return { opacity, currentData, startProgram, timeSeconds }
+    return { opacity, currentData, startProgram, timeSeconds, timeMilliseconds}
   }
 }
 </script>

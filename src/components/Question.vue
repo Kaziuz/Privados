@@ -5,14 +5,24 @@
     <!-- <span class="text-4xl animate__animated animate__fadeInDown animate__delay-1s animate__slower"> -->
       <span class="text-4xl">
         {{ question ? question : '¿De qué se alimentan los koalas?' }}
-    </span>
-  </div>
+      </span>
+    </div>
+    <div class="">seconds{{ seconds }}</div>
+    <div class="">milliseconds{{ milliseconds }}</div>
 </template>
 
-<script>
+<!-- <script>
 export default {
   props: {
     question: String
   }
 }   
+</script> -->
+
+<script setup>
+defineProps({
+  question: String,
+  seconds: Number,
+  milliseconds: Number
+})
 </script>

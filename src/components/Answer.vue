@@ -5,6 +5,7 @@
     <span class="text-2xl italic">
       {{ data && data.answer ? data.answer : 'Los koalas son animales herbívoros que tienen una dieta poco variada. Se alimentan de hojas de eucalipto'}}
     </span>
+    <!-- <span class="">seconds{{ seconds }}</span> -->
     <div class="flex justify-end items-end">
       <span class="text-xl">
         {{ data && data.nickname ? data.nickname : 'apodo' }}
@@ -15,10 +16,18 @@
     </div>
   </div>
 </template>
-<script>
+<!-- <script>
 export default {
   props: {
     data: Object
   }
 }
+</script> -->
+<script setup>
+// import { ref } from 'vue'
+defineProps({
+  data: Object,
+  seconds: Number,
+  milliseconds: Number
+})
 </script>
