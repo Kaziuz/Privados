@@ -4,13 +4,13 @@
   <div class="w-full h-1/2 flex flex-col justify-center items-center">
     <!-- <span class="">seconds{{ seconds }}</span> -->
     <span class="text-2xl italic text-right">
-      {{ data && data.answer ? data.answer : 'Los koalas son animales herbívoros que tienen una dieta poco variada. Se alimentan de hojas de eucalipto'}}
+      {{ data && data.answer && data.answer }}
     </span>
     <div class="block w-full">
       <div class="flex justify-end">
         <span class="text-xl">
-          {{ data && data.nickname ? data.nickname : 'apodo' }}
-          {{ data && data.age ? data.age : '19' }} años
+          {{ data && data.nickname && data.nickname }}
+          {{ data && data.age && data.age }} años
         </span>
       </div>
     </div>
