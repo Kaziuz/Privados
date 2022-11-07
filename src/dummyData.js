@@ -1,8 +1,8 @@
 const dummyData = [
   { 
     id: 1,
-    question:'¿Qué pasaría si no existiera el calentamiento global?',
-    answer: 'El término "efecto de invernadero" se refiere es la retención del calor del Sol en la atmósfera de la Tierra por parte de una capa de gases en la atmósfera. Sin ellos la vida tal como la conocemos no sería posible, ya que el planeta sería demasiado frío.',
+    question:'Qué es el cambio climático y cómo nos afecta',
+    answer: 'El estudio del clima es un campo de investigación complejo y en rápida evolución, debido a la gran cantidad de factores que intervienen. El clima de la Tierra nunca ha sido estático. Como consecuencia de alteraciones en el balance energético, está sometido a variaciones en todas las escalas temporales, desde decenios a miles y millones de años. Entre las variaciones climáticas más destacables que se han producido a lo largo de la historia de la Tierra, figura el ciclo de unos 100.000 años, de períodos glaciares, seguido de períodos interglaciares.',
     nickname: 'Andrea',
     age: '23'
   },

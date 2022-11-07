@@ -1,6 +1,6 @@
 <template>
   <div class="relative d-block font-sans">
-    <div class="w-full h-screen px-1 py-1 bg-black text-white">
+    <div class="w-full h-screen px-1 py-1 bg-black">
       <!-- <span class="text-4xl animate__animated animate__fadeInDown animate__delay-1s animate__slower">
         HOLA
       </span>
@@ -8,10 +8,11 @@
         CHAO
       </span> -->
       <transition name="fade">
-        <div v-if="showContent" class="w-full h-full">
-          <app-question class="top-content" :question="currentData && currentData.question"
-            :milliseconds="timeMilliseconds" />
-          <app-answer class="bottom-content" :data="currentData && currentData" />
+        <div v-if="showContent">
+          <app-word-cloud
+            v-if="currentData"
+            :row="currentData && currentData"
+          />
         </div>
       </transition>
       <!-- Control for develop pruposes -->
@@ -29,13 +30,13 @@
 <script>
 import { reactive, watchEffect, ref } from 'vue'
 // import animateCSS from './composables/animateCSS.js'
-import Question from './components/Question.vue'
-import Answer from './components/Answer.vue'
+import _ from 'lodash'
 import dummyData from './dummyData.js'
+import WordCloud from './components/WordCloud.vue'
+
 export default {
   components: {
-    'app-question': Question,
-    'app-answer': Answer
+    'app-word-cloud': WordCloud
   },
   setup() {
     const currentData = ref({})
