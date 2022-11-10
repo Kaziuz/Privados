@@ -1,60 +1,46 @@
 <template>
   <div class="relative d-block font-sans">
     <div class="w-full h-screen px-1 py-1 bg-black">
+    <div class="container">
+      <div class="absolute top-20 text-white px-10" style="opacity: 30%; transform: translate3d(10px, 20px, 0);">
+          <div class="text-4xl font-black">
+            {{dummyData[0].question}}
+          </div>
+          <div class="text-2xl italic p-4 font-thin w-3/4 text-right">
+            {{dummyData[0].answer}}
+          </div>
+      </div>
+      <div class="absolute top-20 text-white px-10" style="opacity: 20%; transform: translate3d(-10px, 5px, 0);">
+          <div class="text-4xl font-black">
+            {{dummyData[1].question}}
+          </div>
+          <div class="text-2xl italic p-4 font-thin w-3/4 text-right">
+            {{dummyData[1].answer}}
+          </div>
+      </div>
+      <div class="absolute top-20 text-white px-10" style="opacity: 10%; transform: translate3d(3px, 70px, 0);">
+          <div class="text-4xl font-black">
+            {{dummyData[2].question}}
+          </div>
+          <div class="text-2xl italic p-4 font-thin w-3/4 text-right">
+            {{dummyData[2].answer}}
+          </div>
+      </div>
+      <div class="absolute top-20 text-white px-10" style="opacity: 100%; transform: translate3d(20px, 40px, 0);">
+          <div class="text-4xl font-black">
+            {{dummyData[3].question}}
+          </div>
+          <div class="text-2xl italic p-4 font-thin w-3/4 text-right">
+            {{dummyData[3].answer}}
+          </div>
+      </div>
+    </div>
       <!-- <span class="text-4xl animate__animated animate__fadeInDown animate__delay-1s animate__slower">
         HOLA
       </span>
       <span class="text-4xl animate__animated animate__fadeOutDown animate__delay-2s animate__slower">
         CHAO
       </span> -->
-      <app-first-layer
-        class="absolute opacity-40 blur-sm"
-        style="z-index: 0"
-        :maxCols=4
-        v-if="currentData"
-        :row="currentData && currentData"
-      />
-      <app-second-layer
-        class="absolute opacity-50 blur-sm"
-        style="z-index: 1"
-        :maxCols=9
-        v-if="currentData"
-        :row="currentData && currentData"
-      />
-      <app-first-layer
-        class="absolute opacity-10"
-        style="z-index: 2"
-        :maxCols=3
-        v-if="currentData"
-        :row="currentData && currentData"
-      />
-      <app-second-layer
-        class="absolute opacity-20"
-        style="z-index: 3"
-        :maxCols=6
-        v-if="currentData"
-        :row="currentData && currentData"
-      />
-      <div class="absolute" style="z-index: 4">
-        <transition name="fade">
-          <div v-if="showContent">
-            <app-word-cloud
-              v-if="currentData"
-              :row="currentData && currentData"
-            />
-          </div>
-        </transition>
-      </div>
-      <!-- Control for develop pruposes -->
-      <div class="absolute h-200 bg-green-200 top-52" style="z-index:9999">
-        <button @click="startProgram = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          start
-        </button>
-        <button @click="startProgram = false"
-          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-          stop
-        </button>
-      </div>
     </div>
   </div>
 </template>
@@ -140,7 +126,7 @@ export default {
       }
     })
 
-    return { currentData, startProgram, timeMilliseconds, showContent }
+    return { dummyData, currentData, startProgram, timeMilliseconds, showContent }
   }
 }
 </script>
