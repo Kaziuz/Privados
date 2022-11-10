@@ -9,16 +9,16 @@
     >
       <div
         class="inline-flex"
-        v-for="data in showProcessingAnswer(row)"
+        v-for="data in showData(row)"
         :key="data.position"
       >
-        <div class="inline flex-col" :class="positionWords">
+        <div :class="positionWords">
           <span :class="data.size" class="mx-1 italic">
             {{ data.text }}
           </span>
-        </div>
-        <div v-if="data.question" :class="data.size">
-          {{ data.question }}
+          <span :class="data.size">
+            {{ data.question }}
+          </span>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@ export default {
     const positionWords = computed(() => { return positionsYaxis[randomNumber] })
     const positionViz = computed(() => { return positionsTexts[randomNumber] })
 
-    const showProcessingAnswer = data => {
+    const showData = data => {
       let words = []
       let answerByWords = data.answer.split(' ')
       answerByWords = [...answerByWords, data.nickname, data.age, 'años']
@@ -76,10 +76,11 @@ export default {
         start: 0,
         end: 0
       }
-      words = [...words, question]
+      const randomPosQuestion = generateRandomNumber(4, words.length-1)
+      words[randomPosQuestion] = question
       return words
     }
-    return { positionWords, positionViz, showProcessingAnswer }
+    return { positionWords, positionViz, showData }
   }
 }
 </script>
