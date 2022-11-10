@@ -9,6 +9,16 @@ module.exports = {
       fontFamily: {
         'sans': ['Helvetica', 'Arial'],
       },
+      fontSize: {
+        '8px': '8px',
+        'very-small': '12px',
+        'small': '14px'
+      },
+      lineHeight: {
+        '8px': '8px',
+        'very-small': '10px',
+        'small': '10px'
+      }
     },
   },
   plugins: [],

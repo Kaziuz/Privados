@@ -7,22 +7,54 @@
       <span class="text-4xl animate__animated animate__fadeOutDown animate__delay-2s animate__slower">
         CHAO
       </span> -->
-      <transition name="fade">
-        <div v-if="showContent">
-          <app-word-cloud
-            v-if="currentData"
-            :row="currentData && currentData"
-          />
-        </div>
-      </transition>
+      <app-first-layer
+        class="absolute opacity-40 blur-sm"
+        style="z-index: 0"
+        :maxCols=4
+        v-if="currentData"
+        :row="currentData && currentData"
+      />
+      <app-second-layer
+        class="absolute opacity-50 blur-sm"
+        style="z-index: 1"
+        :maxCols=9
+        v-if="currentData"
+        :row="currentData && currentData"
+      />
+      <app-first-layer
+        class="absolute opacity-10"
+        style="z-index: 2"
+        :maxCols=3
+        v-if="currentData"
+        :row="currentData && currentData"
+      />
+      <app-second-layer
+        class="absolute opacity-20"
+        style="z-index: 3"
+        :maxCols=6
+        v-if="currentData"
+        :row="currentData && currentData"
+      />
+      <div class="absolute" style="z-index: 4">
+        <transition name="fade">
+          <div v-if="showContent">
+            <app-word-cloud
+              v-if="currentData"
+              :row="currentData && currentData"
+            />
+          </div>
+        </transition>
+      </div>
       <!-- Control for develop pruposes -->
-      <button @click="startProgram = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        start
-      </button>
-      <button @click="startProgram = false"
-        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-        stop
-      </button>
+      <div class="absolute h-200 bg-green-200 top-52" style="z-index:9999">
+        <button @click="startProgram = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          start
+        </button>
+        <button @click="startProgram = false"
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+          stop
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -33,10 +65,13 @@ import { reactive, watchEffect, ref } from 'vue'
 import _ from 'lodash'
 import dummyData from './dummyData.js'
 import WordCloud from './components/WordCloud.vue'
-
+import FirstLayer from './components/FirstLayer.vue'
+import SecondLayer from './components/SecondLayer.vue'
 export default {
   components: {
-    'app-word-cloud': WordCloud
+    'app-word-cloud': WordCloud,
+    'app-first-layer': FirstLayer,
+    'app-second-layer': SecondLayer
   },
   setup() {
     const currentData = ref({})
@@ -45,7 +80,7 @@ export default {
     let startTime = null
     const timeMilliseconds = ref(0)
     const timeXSecond = 11
-    const totalDurationAnimation = 30 // medio minuto
+    const totalDurationAnimation = 5 // medio minuto
     let currentTimeAnimation = ref(0)
     let nextFrame = ref(0)
     const privateData = reactive(dummyData)

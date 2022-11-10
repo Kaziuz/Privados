@@ -13,11 +13,11 @@
         :key="data.position"
       >
         <div class="inline flex-col" :class="positionWords">
-          <span :class="data.size" class="mx-1 italic" style="">
+          <span :class="data.size" class="mx-1 italic">
             {{ data.text }}
           </span>
         </div>
-        <div v-if="data.question" :class="data.size" class="">
+        <div v-if="data.question" :class="data.size">
           {{ data.question }}
         </div>
       </div>
@@ -28,7 +28,7 @@
 <script>
 import _ from 'lodash'
 import { computed } from 'vue'
-import getRandomArbitrary from '../composables/getRandomArbitrary'
+import generateRandomNumber from '../composables/generateRandomNumber'
 export default {
   props: {
     row: Object
@@ -46,7 +46,7 @@ export default {
       'text-3xl',
       'text-4xl',
     ]
-    const randomNumber = getRandomArbitrary(0, 2)
+    const randomNumber = generateRandomNumber(0, 2)
     const positionWords = computed(() => { return positionsYaxis[randomNumber] })
     const positionViz = computed(() => { return positionsTexts[randomNumber] })
 
@@ -54,13 +54,11 @@ export default {
       let words = []
       let answerByWords = data.answer.split(' ')
       answerByWords = [...answerByWords, data.nickname, data.age, 'años']
-
       let transformedData = {}
-      // console.log('numbers', generatePositions)
       answerByWords.map((word, idx) => {
-        const randomNumber = getRandomArbitrary(0, 7)
+        const randomNumber = generateRandomNumber(0, 7)
         const shuffleSizes = _.shuffle(fontSizes)
-        const generatePositions = getRandomArbitrary(1, randomNumber)
+        const generatePositions = generateRandomNumber(1, randomNumber)
         const generateFontSizes = shuffleSizes[generatePositions]
         transformedData = {
           position: idx,
@@ -71,7 +69,6 @@ export default {
         }
         words.push(transformedData)
       })
-
       let question = {
         position: answerByWords.length + 1,
         question: data.question.toUpperCase().trim(),
@@ -80,16 +77,9 @@ export default {
         end: 0
       }
       words = [...words, question]
-      // console.log('oe', words)
-      // words = _.shuffle(words)
-      // console.log('oe 2', words)
       return words
     }
     return { positionWords, positionViz, showProcessingAnswer }
   }
-
 }
-
-
-
 </script>
