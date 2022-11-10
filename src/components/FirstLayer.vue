@@ -34,7 +34,7 @@ export default {
       'text-8px leading-8px'
     ]
     const maxcolsRef = ref(props.maxCols)
-    const randomCols = generateRandomNumber(3, maxcolsRef.value + 6)
+    const randomCols = generateRandomNumber(3, maxcolsRef.value + 10)
     const showData = data => {
       if (data && data.answer) {
         let words = []

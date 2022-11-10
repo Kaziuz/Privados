@@ -3,26 +3,78 @@
 @tailwind utilities;
 
 /* CUSTOM ANIMATION CSS FOR VUE PRUPOSES */
+
+/* OPACITY: IN 5 seconds - OUT 2 seconds */
 /* Estado inicial del valor a animar (cuando va a empezar la animación) */
-.fade-enter-from {
+.fadeGroupTop-enter-from {
   opacity: 0;
 }
 /* Estado final del valor a animar (cuando va a empezar la animación) */
-.fade-enter-to {
+.fadeGroupTop-enter-to {
   opacity: 1;
 }
 /* Duración entre el estado from y to de fade-enter */
-.fade-enter-active {
-  transition: opacity 5s ease-in;
+.fadeGroupTop-enter-active {
+  transition: opacity 2s ease-in;
 }
 /* Estado inicial del valor a animar (cuando se va a acabar la animación)*/
-.fade-leave-from {
+.fadeGroupTop-leave-from {
   opacity: 1;
 }
 /* Estado final del valor a animar (cuando se va a acabar la animación)*/
-.fade-leave-to {
+.fadeGroupTop-leave-to {
   opacity: 0;
 }
-.fade-leave-active {
+.fadeGroupTop-leave-active {
+  transition: opacity 3s ease-out;
+}
+
+/* OPACITY: IN 5 seconds - OUT 2 seconds */
+/* Estado inicial del valor a animar (cuando va a empezar la animación) */
+.fadeGroupBottom-enter-from {
+  opacity: 0;
+}
+/* Estado final del valor a animar (cuando va a empezar la animación) */
+.fadeGroupBottom-enter-to {
+  opacity: 1;
+}
+/* Duración entre el estado from y to de fade-enter */
+.fadeGroupBottom-enter-active {
+  transition: opacity 3s ease-in;
+}
+/* Estado inicial del valor a animar (cuando se va a acabar la animación)*/
+.fadeGroupBottom-leave-from {
+  opacity: 1;
+}
+/* Estado final del valor a animar (cuando se va a acabar la animación)*/
+.fadeGroupBottom-leave-to {
+  opacity: 0;
+}
+.fadeGroupBottom-leave-active {
   transition: opacity 2s ease-out;
+}
+
+/* OPACITY: IN 1 seconds - OUT 1 seconds */
+/* Estado inicial del valor a animar (cuando va a empezar la animación) */
+.fadeFast-enter-from {
+  opacity: 0;
+}
+/* Estado final del valor a animar (cuando va a empezar la animación) */
+.fadeFast-enter-to {
+  opacity: 1;
+}
+/* Duración entre el estado from y to de fade-enter */
+.fadeFast-enter-active {
+  transition: opacity 1s ease-in;
+}
+/* Estado inicial del valor a animar (cuando se va a acabar la animación)*/
+.fadeFast-leave-from {
+  opacity: 1;
+}
+/* Estado final del valor a animar (cuando se va a acabar la animación)*/
+.fadeFast-leave-to {
+  opacity: 0;
+}
+.fadeFast-leave-active {
+  transition: opacity 1s ease-out;
 }

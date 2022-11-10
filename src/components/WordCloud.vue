@@ -1,6 +1,5 @@
 <template>
   <div
-    style="border: 1px solid red"
     :class="positionViz ? positionViz: ''"
   >
     <div
@@ -13,7 +12,10 @@
         :key="data.position"
       >
         <div :class="positionWords">
-          <span :class="data.size" class="mx-1 italic">
+          <span
+            :class="data.size"
+            class="mx-1 italic"
+          >
             {{ data.text }}
           </span>
           <span :class="data.size">

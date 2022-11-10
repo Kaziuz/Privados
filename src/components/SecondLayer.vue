@@ -24,17 +24,10 @@
 <script>
 import _ from 'lodash'
 import generateRandomNumber from '../composables/generateRandomNumber'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 export default {
   props: ['maxCols', 'row'],
   setup (props) {
-    const dummy = reactive({
-      id: 1,
-      question:'Qué es el cambio climático y cómo nos afecta',
-      answer: 'El estudio del clima es un campo de investigación complejo y en rápida evolución, debido a la gran cantidad de factores que intervienen. El clima de la Tierra nunca ha sido estático. Como consecuencia de alteraciones en el balance energético, está sometido a variaciones en todas las escalas temporales, desde decenios a miles y millones de años. Entre las variaciones climáticas más destacables que se han producido a lo largo de la historia de la Tierra, figura el ciclo de unos 100.000 años, de períodos glaciares, seguido de períodos interglaciares.',
-      nickname: 'Andrea',
-      age: '23'
-    })
     const fontSizes = [
       'text-very-small leading-very-small',
       'text-small leading-small',
@@ -48,7 +41,7 @@ export default {
       if (data && data.answer) {
         let words = []
         let answerByWords = data.answer.split(' ')
-        answerByWords = [...answerByWords, dummy.nickname, dummy.age, 'años']
+        answerByWords = [...answerByWords, data.nickname, data.age, 'años']
         let transformedData = {}
         answerByWords.map((word, idx) => {
           const getSizeFont = generateRandomNumber(0, 3)

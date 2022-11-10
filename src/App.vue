@@ -1,6 +1,6 @@
 <template>
   <div class="relative d-block font-sans">
-    <div class="w-full h-screen px-1 py-1 bg-black">
+    <div class="w-full h-screen bg-black">
       <!-- <span class="text-4xl animate__animated animate__fadeInDown animate__delay-1s animate__slower">
         HOLA
       </span>
@@ -9,44 +9,52 @@
       </span> -->
       <app-first-layer
         class="absolute opacity-40 blur-sm"
-        style="z-index: 0"
+        style="z-index: 1"
         :maxCols=4
-        v-if="currentData"
-        :row="currentData && currentData"
+        v-if="topData"
+        :row="topData && topData"
       />
       <app-second-layer
         class="absolute opacity-50 blur-sm"
-        style="z-index: 1"
+        style="z-index: 2"
         :maxCols=9
-        v-if="currentData"
-        :row="currentData && currentData"
+        v-if="bottomData"
+        :row="bottomData && bottomData"
       />
       <app-first-layer
         class="absolute opacity-10"
-        style="z-index: 2"
+        style="z-index: 3"
         :maxCols=3
-        v-if="currentData"
-        :row="currentData && currentData"
+        v-if="topData"
+        :row="topData && topData"
       />
       <app-second-layer
         class="absolute opacity-20"
-        style="z-index: 3"
+        style="z-index: 4"
         :maxCols=6
-        v-if="currentData"
-        :row="currentData && currentData"
+        v-if="bottomData"
+        :row="bottomData && bottomData"
       />
-      <div class="absolute" style="z-index: 4">
-        <transition name="fade">
-          <div v-if="showContent">
+      <div class="absolute w-full- h-screen" style="z-index: 5">
+        <transition name="fadeGroupTop">
+          <div v-if="showGroupTop" class="fixed top-1">
             <app-word-cloud
-              v-if="currentData"
-              :row="currentData && currentData"
+              v-if="topData"
+              :row="topData && topData"
+            />
+          </div>
+        </transition>
+        <transition name="fadeGroupBottom">
+          <div v-if="showGroupBottom" class="fixed bottom-1">
+            <app-word-cloud
+              v-if="bottomData"
+              :row="bottomData && bottomData"
             />
           </div>
         </transition>
       </div>
       <!-- Control for develop pruposes -->
-      <div class="absolute h-200 bg-green-200 top-52" style="z-index:9999">
+      <div class="absolute h-200 bg-green-200" style="z-index:9999">
         <button @click="startProgram = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           start
         </button>
@@ -74,17 +82,20 @@ export default {
     'app-second-layer': SecondLayer
   },
   setup() {
-    const currentData = ref({})
+    const topData = ref({})
+    const bottomData = ref({})
+    const showGroupTop = ref(false)
+    const showGroupBottom = ref(false)
+
     const startProgram = ref(false)
     let interval = () => { }
     let startTime = null
     const timeMilliseconds = ref(0)
     const timeXSecond = 11
-    const totalDurationAnimation = 5 // medio minuto
+    const totalDurationAnimation = 20 // 40 segundos
     let currentTimeAnimation = ref(0)
     let nextFrame = ref(0)
     const privateData = reactive(dummyData)
-    const showContent = ref(false)
 
     const start = () => {
       startTime = Date.now()
@@ -119,14 +130,23 @@ export default {
     watchEffect(() => {
       if (currentTimeAnimation.value) {
         console.log('currentTimeAnimation', currentTimeAnimation.value)
-        if (currentTimeAnimation.value === 1) {
-          showContent.value = true
+
+        if (currentTimeAnimation.value === 2) {
+          showGroupTop.value = true
           // addFadeIn(classTop)
           nextFrame.value = nextFrame.value + 1
         }
-        else if (currentTimeAnimation.value === 28) {
-          showContent.value = false
-          // addFadeOut(classTop)
+
+        if (currentTimeAnimation.value === 5) {
+          showGroupBottom.value = true
+        }
+
+        if (currentTimeAnimation.value === 15) {
+          showGroupTop.value = false
+        }
+
+        if (currentTimeAnimation.value === 18) {
+          showGroupBottom.value = false
         }
       }
     })
@@ -136,11 +156,12 @@ export default {
         const currentFrameData = nextFrame.value % privateData.length
         // console.log('CURRENT ROW', currentFrameData)
         // console.log('TOTAL ROW DATA', privateData.length)
-        currentData.value = privateData[currentFrameData]
+        topData.value = privateData[currentFrameData]
+        bottomData.value = privateData[currentFrameData+1]
       }
     })
 
-    return { currentData, startProgram, timeMilliseconds, showContent }
+    return { topData, bottomData, startProgram, timeMilliseconds, showGroupTop, showGroupBottom }
   }
 }
 </script>
