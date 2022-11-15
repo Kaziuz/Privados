@@ -16,10 +16,10 @@
         stop
       </button>
       <div>
-        <Layer :qa_obj=queueData[0] style="opacity: 30%"></Layer>
-        <Layer :qa_obj=queueData[1] style="opacity: 20%"></Layer>
-        <Layer :qa_obj=queueData[2] style="opacity: 10%"></Layer>
-        <Layer :qa_obj=queueData[3] style="opacity: 100%"></Layer>
+        <Layer :qa_obj=queueData[3] style="opacity: 15%"></Layer>
+        <Layer :qa_obj=queueData[2] style="opacity: 20%"></Layer>
+        <Layer :qa_obj=queueData[1] style="opacity: 30%"></Layer>
+        <Layer :qa_obj=queueData[0] style="opacity: 100%"></Layer>
       </div>
     </div>
      
@@ -32,15 +32,9 @@ import { reactive, watchEffect, ref } from 'vue'
 // import animateCSS from './composables/animateCSS.js'
 import _ from 'lodash'
 import dummyData from './dummyData.js'
-import WordCloud from './components/WordCloud.vue'
-import FirstLayer from './components/FirstLayer.vue'
-import SecondLayer from './components/SecondLayer.vue'
 import Layer from './components/Layer.vue'
 export default {
   components: {
-    'app-word-cloud': WordCloud,
-    'app-first-layer': FirstLayer,
-    'app-second-layer': SecondLayer,
     Layer
   },
   setup() {
@@ -109,8 +103,12 @@ export default {
         const currentFrameData = nextFrame.value % privateData.length
         console.log('CURRENT ROW', currentFrameData)
         // console.log('TOTAL ROW DATA', privateData.length)
-        currentData.value = privateData[currentFrameData]
-        queueData.value = privateData.slice(-1*parseInt(Math.random()*4))
+        queueData.value = [
+          privateData[(currentFrameData) % privateData.length], 
+          privateData[(currentFrameData + 1) % privateData.length], 
+          privateData[(currentFrameData + 2) % privateData.length], 
+          privateData[(currentFrameData + 3) % privateData.length]
+        ]
       }
     })
 
