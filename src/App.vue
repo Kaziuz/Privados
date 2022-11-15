@@ -1,47 +1,29 @@
 <template>
   <div class="relative d-block font-sans">
-    <div class="w-full h-screen px-1 py-1 bg-black">
+    <div class="w-screen h-screen px-1 py-1 bg-black">
     <div class="container">
-      <div class="absolute top-20 text-white px-10" style="opacity: 30%; transform: translate3d(10px, 20px, 0);">
-          <div class="text-4xl font-black">
-            {{dummyData[0].question}}
-          </div>
-          <div class="text-2xl italic p-4 font-thin w-3/4 text-right">
-            {{dummyData[0].answer}}
-          </div>
-      </div>
-      <div class="absolute top-20 text-white px-10" style="opacity: 20%; transform: translate3d(-10px, 5px, 0);">
-          <div class="text-4xl font-black">
-            {{dummyData[1].question}}
-          </div>
-          <div class="text-2xl italic p-4 font-thin w-3/4 text-right">
-            {{dummyData[1].answer}}
-          </div>
-      </div>
-      <div class="absolute top-20 text-white px-10" style="opacity: 10%; transform: translate3d(3px, 70px, 0);">
-          <div class="text-4xl font-black">
-            {{dummyData[2].question}}
-          </div>
-          <div class="text-2xl italic p-4 font-thin w-3/4 text-right">
-            {{dummyData[2].answer}}
-          </div>
-      </div>
-      <div class="absolute top-20 text-white px-10" style="opacity: 100%; transform: translate3d(20px, 40px, 0);">
-          <div class="text-4xl font-black">
-            {{dummyData[3].question}}
-          </div>
-          <div class="text-2xl italic p-4 font-thin w-3/4 text-right">
-            {{dummyData[3].answer}}
-          </div>
+           <!-- Control for develop pruposes -->
+           <button
+        @click="startProgram = true"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        start
+      </button>
+      <button
+        @click="startProgram = false"
+        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      >
+        stop
+      </button>
+      <div>
+        <Layer :qa_obj=queueData[0] style="opacity: 30%"></Layer>
+        <Layer :qa_obj=queueData[1] style="opacity: 20%"></Layer>
+        <Layer :qa_obj=queueData[2] style="opacity: 10%"></Layer>
+        <Layer :qa_obj=queueData[3] style="opacity: 100%"></Layer>
       </div>
     </div>
-      <!-- <span class="text-4xl animate__animated animate__fadeInDown animate__delay-1s animate__slower">
-        HOLA
-      </span>
-      <span class="text-4xl animate__animated animate__fadeOutDown animate__delay-2s animate__slower">
-        CHAO
-      </span> -->
-    </div>
+     
+  </div>
   </div>
 </template>
 
@@ -53,11 +35,13 @@ import dummyData from './dummyData.js'
 import WordCloud from './components/WordCloud.vue'
 import FirstLayer from './components/FirstLayer.vue'
 import SecondLayer from './components/SecondLayer.vue'
+import Layer from './components/Layer.vue'
 export default {
   components: {
     'app-word-cloud': WordCloud,
     'app-first-layer': FirstLayer,
-    'app-second-layer': SecondLayer
+    'app-second-layer': SecondLayer,
+    Layer
   },
   setup() {
     const currentData = ref({})
@@ -71,6 +55,9 @@ export default {
     let nextFrame = ref(0)
     const privateData = reactive(dummyData)
     const showContent = ref(false)
+
+    let queueData = ref([])
+    queueData.value = dummyData.slice(-4)
 
     const start = () => {
       startTime = Date.now()
@@ -110,7 +97,7 @@ export default {
           // addFadeIn(classTop)
           nextFrame.value = nextFrame.value + 1
         }
-        else if (currentTimeAnimation.value === 28) {
+        else if (currentTimeAnimation.value === 5) {
           showContent.value = false
           // addFadeOut(classTop)
         }
@@ -120,13 +107,14 @@ export default {
     watchEffect(() => {
       if (nextFrame.value) {
         const currentFrameData = nextFrame.value % privateData.length
-        // console.log('CURRENT ROW', currentFrameData)
+        console.log('CURRENT ROW', currentFrameData)
         // console.log('TOTAL ROW DATA', privateData.length)
         currentData.value = privateData[currentFrameData]
+        queueData.value = privateData.slice(-1*parseInt(Math.random()*4))
       }
     })
 
-    return { dummyData, currentData, startProgram, timeMilliseconds, showContent }
+    return { queueData, dummyData, currentData, startProgram, timeMilliseconds, showContent }
   }
 }
 </script>
