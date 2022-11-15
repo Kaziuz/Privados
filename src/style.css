@@ -3,26 +3,49 @@
 @tailwind utilities;
 
 /* CUSTOM ANIMATION CSS FOR VUE PRUPOSES */
-/* Estado inicial del valor a animar (cuando va a empezar la animación) */
-.fade-enter-from {
+/* Preguntas */
+.questionFade-enter-from {
   opacity: 0;
 }
 /* Estado final del valor a animar (cuando va a empezar la animación) */
-.fade-enter-to {
+.questionFade-enter-to {
   opacity: 1;
 }
 /* Duración entre el estado from y to de fade-enter */
-.fade-enter-active {
-  transition: opacity 5s ease-in;
+.questionFade-enter-active {
+  transition: opacity 1s ease-in;
 }
 /* Estado inicial del valor a animar (cuando se va a acabar la animación)*/
-.fade-leave-from {
+.questionFade-leave-from {
   opacity: 1;
 }
 /* Estado final del valor a animar (cuando se va a acabar la animación)*/
-.fade-leave-to {
+.questionFade-leave-to {
   opacity: 0;
 }
-.fade-leave-active {
-  transition: opacity 2s ease-out;
+.questionFade-leave-active {
+  transition: opacity 3s ease-out;
+}
+/* Respuestas */
+.answerFade-enter-from {
+  opacity: 0;
+}
+/* Estado final del valor a animar (cuando va a empezar la animación) */
+.answerFade-enter-to {
+  opacity: 1;
+}
+/* Duración entre el estado from y to de fade-enter */
+.answerFade-enter-active {
+  transition: opacity 3s ease-in;
+}
+/* Estado inicial del valor a animar (cuando se va a acabar la animación)*/
+.answerFade-leave-from {
+  opacity: 1;
+}
+/* Estado final del valor a animar (cuando se va a acabar la animación)*/
+.answerFade-leave-to {
+  opacity: 0;
+}
+.answerFade-leave-active {
+  transition: opacity 1s ease-out;
 }

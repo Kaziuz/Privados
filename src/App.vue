@@ -1,25 +1,25 @@
 <template>
   <div class="relative d-block font-sans">
     <div class="w-screen h-screen px-1 py-1 bg-black">
-    <div class="container">
-           <!-- Control for develop pruposes -->
-           <button
-        @click="startProgram = true"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        start
-      </button>
-      <button
-        @click="startProgram = false"
-        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-      >
-        stop
-      </button>
+      <div class="container">
+        <!-- Control for develop pruposes -->
+        <button
+          @click="startProgram = true"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          start
+        </button>
+        <button
+          @click="startProgram = false"
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        >
+          stop
+        </button>
       <div>
-        <Layer :qa_obj=queueData[0] style="opacity: 30%"></Layer>
-        <Layer :qa_obj=queueData[1] style="opacity: 20%"></Layer>
-        <Layer :qa_obj=queueData[2] style="opacity: 10%"></Layer>
-        <Layer :qa_obj=queueData[3] style="opacity: 100%"></Layer>
+        <Layer v-if="showLayerFour" :qa_obj=queueData[0] style="opacity: 30%" :milliseconds="currentTimeAnimation" />
+        <Layer v-if="showLayerFour" :qa_obj=queueData[1] style="opacity: 20%" :milliseconds="currentTimeAnimation" />
+        <Layer v-if="showLayerFour" :qa_obj=queueData[2] style="opacity: 10%" :milliseconds="currentTimeAnimation" />
+        <Layer v-if="showLayerFour" :qa_obj=queueData[3] style="opacity: 100%" :milliseconds="currentTimeAnimation" />
       </div>
     </div>
      
@@ -50,11 +50,11 @@ export default {
     let startTime = null
     const timeMilliseconds = ref(0)
     const timeXSecond = 11
-    const totalDurationAnimation = 5 // medio minuto
+    const totalDurationAnimation = 9 // 10 segundos
     let currentTimeAnimation = ref(0)
     let nextFrame = ref(0)
     const privateData = reactive(dummyData)
-    const showContent = ref(false)
+    const showLayerFour = ref(false)
 
     let queueData = ref([])
     queueData.value = dummyData.slice(-4)
@@ -74,8 +74,6 @@ export default {
       let milliseconds = parseInt(millis)
       timeMilliseconds.value = milliseconds
       const spendAsecond = milliseconds % timeXSecond
-      // console.log('spendAsecond', spendAsecond)
-      // console.log('milliseconds', milliseconds)
       if (spendAsecond === 0) {
         currentTimeAnimation.value = (currentTimeAnimation.value + 1) % totalDurationAnimation
       }
@@ -90,16 +88,16 @@ export default {
     })
 
     watchEffect(() => {
-      if (currentTimeAnimation.value) {
-        console.log('currentTimeAnimation', currentTimeAnimation.value)
-        if (currentTimeAnimation.value === 1) {
-          showContent.value = true
-          // addFadeIn(classTop)
-          nextFrame.value = nextFrame.value + 1
+      // console.log('time', currentTimeAnimation.value)
+      switch (currentTimeAnimation.value) {
+        case (0): {
+          showLayerFour.value = true
+          return
         }
-        else if (currentTimeAnimation.value === 5) {
-          showContent.value = false
-          // addFadeOut(classTop)
+        case (9): {
+          showLayerFour.value = false
+          nextFrame.value = nextFrame.value + 1
+          return
         }
       }
     })
@@ -114,7 +112,7 @@ export default {
       }
     })
 
-    return { queueData, dummyData, currentData, startProgram, timeMilliseconds, showContent }
+    return { queueData, startProgram, currentTimeAnimation, showLayerFour }
   }
 }
 </script>
