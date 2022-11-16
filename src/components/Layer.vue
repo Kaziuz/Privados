@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { watchEffect } from '@vue/runtime-core'
+import { watchEffect } from 'vue'
 import { ref } from 'vue'
 
 const props = defineProps(['milliseconds', 'qa_obj'])
