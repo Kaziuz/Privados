@@ -3,7 +3,34 @@
 @tailwind utilities;
 
 /* CUSTOM ANIMATION CSS FOR VUE PRUPOSES */
-/* Preguntas */
+/* WRAPPER LAYERS */
+
+/* OTHER */
+.layerTwo-enter-from {
+  opacity: 0;
+}
+/* Estado final del valor a animar (cuando va a empezar la animación) */
+.layerTwo-enter-to {
+  opacity: 1;
+}
+/* Duración entre el estado from y to de fade-enter */
+.layerTwo-enter-active {
+  transition: opacity 2s ease-in;
+}
+/* Estado inicial del valor a animar (cuando se va a acabar la animación)*/
+.layerTwo-leave-from {
+  opacity: 1;
+}
+/* Estado final del valor a animar (cuando se va a acabar la animación)*/
+.layerTwo-leave-to {
+  opacity: 0;
+}
+.layerTwo-leave-active {
+  transition: opacity 2s ease-out;
+}
+/* FIN WARAPER LAYER*/
+
+/* Pregunta */
 .questionFade-enter-from {
   opacity: 0;
 }
@@ -26,7 +53,8 @@
 .questionFade-leave-active {
   transition: opacity 3s ease-out;
 }
-/* Respuestas */
+
+/* Respuesta */
 .answerFade-enter-from {
   opacity: 0;
 }
@@ -47,5 +75,5 @@
   opacity: 0;
 }
 .answerFade-leave-active {
-  transition: opacity 1s ease-out;
+  transition: opacity 5s ease-out;
 }
