@@ -14,17 +14,17 @@
         <div>
           <transition name="layerTwo" appear>
             <div v-if="showLayerFour">
-              <app-layer :qa_obj=queueData[3] style="opacity: 20%" :milliseconds="currentTimeAnimation" />
+              <app-layer :qa_obj=queueData[3] style="opacity: 15%" :milliseconds="currentTimeAnimation" />
             </div>
           </transition>
           <transition name="answerFade" appear>
             <div v-if="showLayerThree">
-              <app-layer :qa_obj=queueData[2] style="opacity: 30%" :milliseconds="currentTimeAnimation" />
+              <app-layer :qa_obj=queueData[2] style="opacity: 20%" :milliseconds="currentTimeAnimation" />
             </div>
           </transition>
           <transition name="layerTwo" appear>
             <div v-if="showLayerTwo">
-              <app-layer :qa_obj=queueData[1] style="opacity: 10%" :milliseconds="currentTimeAnimation" />
+              <app-layer :qa_obj=queueData[1] style="opacity: 30%" :milliseconds="currentTimeAnimation" />
             </div>
           </transition>
             
