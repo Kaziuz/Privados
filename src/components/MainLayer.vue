@@ -25,19 +25,20 @@ const answer = ref(false)
 
 watchEffect(() => {
   switch (props.milliseconds) {
-    case (5): {
+    case (1): {
       question.value = true
       return
     }
-    case (8): {
+    case (4): {
       answer.value = true
       return
     }
     case (28): {
-      question.value = false
+      // question.value = false
       return
     }
     case (30): {
+      question.value = false
       answer.value = false
       return
     }

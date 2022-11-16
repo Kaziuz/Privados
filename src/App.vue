@@ -14,7 +14,7 @@
         <div>
           <transition name="layerTwo" appear>
             <div v-if="showLayerFour">
-              <app-layer :qa_obj=queueData[0] style="opacity: 20%" :milliseconds="currentTimeAnimation" />
+              <app-layer :qa_obj=queueData[3] style="opacity: 20%" :milliseconds="currentTimeAnimation" />
             </div>
           </transition>
           <transition name="answerFade" appear>
@@ -27,8 +27,10 @@
               <app-layer :qa_obj=queueData[1] style="opacity: 10%" :milliseconds="currentTimeAnimation" />
             </div>
           </transition>
-          <app-main-layer v-if="showLayerOne" :qa_obj=queueData[3] style="opacity: 100%"
-            :milliseconds="currentTimeAnimation" />
+            
+          <app-main-layer v-if="showLayerOne" :qa_obj=queueData[0] style="opacity: 100%"
+              :milliseconds="currentTimeAnimation" />
+          
         </div>
       </div>
     </div>
@@ -58,10 +60,10 @@ export default {
     let currentTimeAnimation = ref(0)
     let nextFrame = ref(0)
     const privateData = reactive(dummyData)
-    const showLayerOne = ref(false)
-    const showLayerTwo = ref(false)
-    const showLayerThree = ref(false)
-    const showLayerFour = ref(false)
+    const showLayerOne = ref(true)
+    const showLayerTwo = ref(true)
+    const showLayerThree = ref(true)
+    const showLayerFour = ref(true)
 
     let queueData = ref([])
     queueData.value = dummyData.slice(-4)
@@ -98,39 +100,43 @@ export default {
       console.log('time', currentTimeAnimation.value)
       switch (currentTimeAnimation.value) {
         case (0): {
-          showLayerFour.value = true
+          // showLayerTwo.value = true
+          // showLayerFour.value = true
+          // showLayerThree.value = true
           return
         }
         case (1): {
-          showLayerThree.value = true
+          // showLayerThree.value = true
           return
         }
         case (2): {
-          showLayerTwo.value = true
+          // showLayerTwo.value = true
           return
         }
         case (3): {
-          showLayerOne.value = true
+          // showLayerOne.value = true
           return
         }
         case (25): {
-          showLayerThree.value = false
+          // showLayerThree.value = false
           return
         }
         case (30): {
-          showLayerFour.value = false
+          // showLayerFour.value = false
+          nextFrame.value = nextFrame.value + 1
           return
         }
         case (32): {
-          showLayerOne.value = false
+          // showLayerOne.value = false
           return
         }
         case (33): {
-          showLayerTwo.value = false
+          // showLayerTwo.value = false
+          // nextFrame.value = nextFrame.value + 1
           return
         }
         case (34): {
-          nextFrame.value = nextFrame.value + 1
+          //nextFrame.value = nextFrame.value + 1
           return
         }
       }
@@ -141,8 +147,12 @@ export default {
         const currentFrameData = nextFrame.value % privateData.length
         console.log('CURRENT ROW', currentFrameData)
         // console.log('TOTAL ROW DATA', privateData.length)
-        currentData.value = privateData[currentFrameData]
-        queueData.value = privateData.slice(-1 * parseInt(Math.random() * 4))
+        queueData.value = [
+          privateData[(currentFrameData) % privateData.length], 
+          privateData[(currentFrameData + 1) % privateData.length], 
+          privateData[(currentFrameData + 2) % privateData.length], 
+          privateData[(currentFrameData + 3) % privateData.length]
+        ]
       }
     })
 
