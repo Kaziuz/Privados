@@ -2,25 +2,14 @@
   <div class="absolute text-white">
     <div
       :class="`${getReverse} ${getJustify}`"
-      class="relative flex w-screen h-screen p-8"
+      class="relative flex w-screen h-screen"
     >
-      <transition name="questionFade">
-        <div
-          v-if="question"
-          :class="getPosX"
-          class="block text-4xl font-black"
-        >
-          {{ props.qa_obj?.question }}
-        </div>
-      </transition>
-      <transition name="answerFade">
-        <div
-          :class="`${posXText[generatePosX]}`"
-          v-if="answer" class="text-2xl italic p-4 font-thin"
-        >
-          {{ props.qa_obj?.answer }}
-        </div>
-      </transition>
+      <div class="block text-4xl font-black" :class="getPosX">
+        {{ props.qa_obj?.question }}
+      </div>
+      <div class="block text-2xl italic p-4 font-thin" :class="posXText[generatePosX]">
+        {{ props.qa_obj?.answer }}
+      </div>
     </div>
   </div>
 </template>
@@ -50,24 +39,22 @@ const getJustify = ref('')
 
 const generate = () => {
   generatePosX.value = generateRandomNumber(0, 2)
-  generatePosY.value = generateRandomNumber(0, 1)
+  generatePosY.value = generateRandomNumber(0, 1) 
   generateJustify.value = generateRandomNumber(0,3)
 }
 
 watchEffect(() => {
-  console.log('time', props.milliseconds)
   switch (props.milliseconds) {
-    case (1): {
+    case (2): {
       generate()
-      question.value = true
       return
     }
-    case (4): {
+    case (3): {
       answer.value = true
       return
     }
-    case (28): {
-      // question.value = false
+    case (5): {
+      question.value = true
       return
     }
     case (30): {
@@ -79,11 +66,9 @@ watchEffect(() => {
 })
 
 watchEffect(() => {
-  const posText = posXText[generatePosX.value]
-  posText ?  getPosX.value = posText : getPosX.value = posXText[2]
-  const posytext = posY[generatePosY.value]
-  posytext ? getReverse.value = posytext : getReverse.value = posY[1]
-  const posjustify = justify[generateJustify.value]
-  posjustify ? getJustify.value = posjustify : getJustify.value = justify[2]
+  getPosX.value = posXText[generatePosX.value]
+  getReverse.value = posY[generatePosY.value]
+  getJustify.value = justify[generateJustify.value]
+  console.log('3', getPosX.value, getReverse.value, getJustify.value)
 })
 </script>

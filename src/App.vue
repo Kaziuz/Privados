@@ -1,8 +1,7 @@
 <template>
   <div class="relative d-block font-sans">
-    <div class="w-screen h-screen px-1 py-1 bg-black">
-      <div class="container">
-        <!-- Control for develop pruposes -->
+    <div class="w-screen h-screen bg-black">
+      <div class="container absolute z-10">
         <button @click="startProgram = true"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           start
@@ -11,28 +10,43 @@
           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           stop
         </button>
-        <div>
-          <transition name="layerTwo" appear>
-            <div v-if="showLayerFour">
-              <app-layer :qa_obj=queueData[3] style="opacity: 15%" :milliseconds="currentTimeAnimation" />
-            </div>
-          </transition>
-          <transition name="answerFade" appear>
-            <div v-if="showLayerThree">
-              <app-layer :qa_obj=queueData[2] style="opacity: 20%" :milliseconds="currentTimeAnimation" />
-            </div>
-          </transition>
-          <transition name="layerTwo" appear>
-            <div v-if="showLayerTwo">
-              <app-layer :qa_obj=queueData[1] style="opacity: 30%" :milliseconds="currentTimeAnimation" />
-            </div>
-          </transition>
-            
-          <app-main-layer v-if="showLayerOne" :qa_obj=queueData[0] style="opacity: 100%"
-              :milliseconds="currentTimeAnimation" />
-          
-        </div>
       </div>
+      <transition name="layerTwo" appear>
+        <div v-if="showLayerFour">
+          <app-layer-one
+            :qa_obj=queueData[3]
+            style="opacity: 20%"
+            :milliseconds="currentTimeAnimation"
+          />
+        </div>
+      </transition>
+
+      <transition name="answerFade" appear>
+        <div v-if="showLayerThree">
+          <app-layer-one
+            :qa_obj=queueData[2]
+            style="opacity: 30%"
+            :milliseconds="currentTimeAnimation"
+          />
+        </div>
+      </transition>
+    
+      <transition name="layerTwo" appear>
+        <div v-if="showLayerTwo">
+          <app-layer-two
+            :qa_obj=queueData[1]
+            style="opacity: 10%"
+            :milliseconds="currentTimeAnimation"
+          />
+        </div>
+      </transition>
+
+      <app-main-layer
+        v-if="showLayerOne"
+        :qa_obj=queueData[0]
+        style="opacity: 100%"
+        :milliseconds="currentTimeAnimation"
+      />
     </div>
   </div>
 </template>
@@ -42,15 +56,16 @@ import { reactive, watchEffect, ref } from 'vue'
 // import animateCSS from './composables/animateCSS.js'
 import _ from 'lodash'
 import dummyData from './dummyData.js'
-import Layer from './components/Layer.vue'
+import LayerOne from './components/LayerOne.vue'
+import LayerTwo from './components/LayerTwo.vue'
 import MainLayer from './components/MainLayer.vue'
 export default {
   components: {
     'app-main-layer': MainLayer,
-    'app-layer': Layer
+    'app-layer-one': LayerOne,
+    'app-layer-two': LayerTwo
   },
   setup() {
-    const currentData = ref({})
     const startProgram = ref(false)
     let interval = () => { }
     let startTime = null
@@ -97,7 +112,7 @@ export default {
     })
 
     watchEffect(() => {
-      console.log('time', currentTimeAnimation.value)
+      // console.log('time', currentTimeAnimation.value)
       switch (currentTimeAnimation.value) {
         case (0): {
           // showLayerTwo.value = true
@@ -148,9 +163,9 @@ export default {
         console.log('CURRENT ROW', currentFrameData)
         // console.log('TOTAL ROW DATA', privateData.length)
         queueData.value = [
-          privateData[(currentFrameData) % privateData.length], 
-          privateData[(currentFrameData + 1) % privateData.length], 
-          privateData[(currentFrameData + 2) % privateData.length], 
+          privateData[(currentFrameData) % privateData.length],
+          privateData[(currentFrameData + 1) % privateData.length],
+          privateData[(currentFrameData + 2) % privateData.length],
           privateData[(currentFrameData + 3) % privateData.length]
         ]
       }
