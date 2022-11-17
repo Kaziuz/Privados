@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@yeger/vue-masonry-wall": "^3.2.24",
     "autoprefixer": "^10.4.13",
     "lodash": "^4.17.21",
     "postcss": "^8.4.18",

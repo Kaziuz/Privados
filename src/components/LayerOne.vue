@@ -1,0 +1,69 @@
+<template>
+  <div class="absolute text-white">
+    <div
+      :class="`${getReverse} ${getJustify}`"
+      class="relative flex w-screen h-screen"
+    >
+      <div class="block text-4xl font-black" :class="getPosX">
+        {{ props.qa_obj?.question }}
+      </div>
+      <div class="block text-2xl italic p-4 font-thin" :class="posXText[generatePosX]">
+        {{ props.qa_obj?.answer }}
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import generateRandomNumber from './../composables/generateRandomNumber'
+import { watchEffect } from 'vue'
+import { ref } from 'vue'
+
+const props = defineProps(['milliseconds', 'qa_obj'])
+const posXText = ['text-left', 'text-center', 'text-right']
+const posY = ['flex-col', 'flex-col-reverse']
+const justify = ['justify-between', 'justify-around']
+const question = ref(false)
+const answer = ref(false)
+const generatePosX = ref(0)
+const generatePosY = ref(0)
+const generateJustify = ref(0)
+const getPosX = ref('')
+const getReverse = ref('')
+const getJustify = ref('')
+
+const generate = () => {
+  generatePosX.value = generateRandomNumber(0, 2)
+  generatePosY.value = generateRandomNumber(0, 1) 
+  generateJustify.value = generateRandomNumber(0,1)
+}
+
+watchEffect(() => {
+  switch (props.milliseconds) {
+    case (0): {
+      generate()
+      return
+    }
+    case (4): {
+      answer.value = true
+      return
+    }
+    case (2): {
+      question.value = true
+      return
+    }
+    case (32): {
+      question.value = false
+      answer.value = false
+      return
+    }
+  }
+})
+
+watchEffect(() => {
+  getPosX.value = posXText[generatePosX.value]
+  getReverse.value = posY[generatePosY.value]
+  getJustify.value = justify[generateJustify.value]
+  console.log('2', getPosX.value, getReverse.value, getJustify.value)
+})
+</script>

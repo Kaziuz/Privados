@@ -133,6 +133,11 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.41.tgz#fbc95422df654ea64e8428eced96ba6ad555d2bb"
   integrity sha512-W9mfWLHmJhkfAmV+7gDjcHeAWALQtgGT3JErxULl0oz6R6+3ug91I7IErs93eCFhPCZPHBs4QJS7YWEV7A3sxw==
 
+"@yeger/vue-masonry-wall@^3.2.24":
+  version "3.2.24"
+  resolved "https://registry.yarnpkg.com/@yeger/vue-masonry-wall/-/vue-masonry-wall-3.2.24.tgz#5f3bd28acc5b22d8365ea289768a39f6c983da72"
+  integrity sha512-FocDUDyJ6Ie8zWIzo4fIA0YOtyWVSuMcdtYr5T25sA+iPpO7mkE0xAxUmgmUXKZ08VMUKhQ8GwurnZ3gwgMj2g==
+
 acorn-node@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/acorn-node/-/acorn-node-1.8.2.tgz#114c95d64539e53dede23de8b9d96df7c7ae2af8"
