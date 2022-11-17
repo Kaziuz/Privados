@@ -81,7 +81,7 @@ export default {
     const showLayerFour = ref(true)
 
     let queueData = ref([])
-    queueData.value = dummyData.slice(-4)
+    queueData.value = dummyData.slice(0,-3)
 
     const start = () => {
       startTime = Date.now()
