@@ -1,6 +1,6 @@
 <template>
   <div class="absolute text-white">
-    <div class="relative flex flex-col justify-around w-screen h-full p-8">
+    <div class="relative p-12 flex flex-col justify-around w-screen h-full p-8">
       <transition name="questionFade">
         <div v-if="question" class="text-4xl font-black">
           {{ props.qa_obj?.question }}
@@ -25,7 +25,7 @@ const answer = ref(false)
 
 watchEffect(() => {
   switch (props.milliseconds) {
-    case (1): {
+    case (0): {
       question.value = true
       return
     }
