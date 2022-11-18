@@ -1,375 +1,195 @@
 const dummyData = [
-  { 
-    id: 1,
-    question:'Qué es el cambio climático y cómo nos afecta',
-    answer: 'El estudio del clima es un campo de investigación complejo y en rápida evolución, debido a la gran cantidad de factores que intervienen. El clima de la Tierra nunca ha sido estático. Como consecuencia de alteraciones en el balance energético, está sometido a variaciones en todas las escalas temporales, desde decenios a miles y millones de años. Entre las variaciones climáticas más destacables que se han producido a lo largo de la historia de la Tierra, figura el ciclo de unos 100.000 años, de períodos glaciares, seguido de períodos interglaciares.',
-    nickname: 'Andrea',
-    age: '23'
+  {
+    "PREGUNTA": "¿Crees que la Universidad debería ser gratuita?",
+    "RESPUESTA": "Creo que la Universidad debería ser gratuita porque habemos muchas personas, incluyéndome a mí, a las que le darín un aoportuniudad de superarse y ser alguien en la vida, demostrando que somos seres humanos que podemos salir adelante"
   },
   {
-    id: 2,
-    question:'¿Qué es lo que afecta el calentamiento global?',
-    answer: 'La salud es y será afectada por los cambios de clima a través de impactos directos (olas de calor, sequías, tormentas fuertes y aumento del nivel del mar) e impactos indirectos (enfermedades de las vías respiratorias y las transmitidas por vectores, inseguridad alimentaria y del agua, desnutrición y desplazamientos',
-    nickname: 'Santiago',
-    age: '35'
-  },
-  { 
-    id: 3,
-    question:'¿Cómo se derrite el mundo?',
-    answer: 'Específicamente desde la revolución industrial, el dióxido de carbono y otras emisiones de gases de efecto invernadero han aumentado las temperaturas, provocando elevaciones de temperatura aún mucho mayores en los polos, y como resultado, los glaciares se han estado derritiendo rápidamente, fraccionándose en el mar.',
-    nickname: 'Carlos',
-    age: '43'
-  },{
-    "id": 1,
-    "question": "His mother had always taught him",
-    "answer": "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto. He never looked down on those who were less fortunate or who had less money than him. But the stupidity of the group of people he was talking to made him change his mind.",
-    "userId": 9,
-    "tags": [
-      "history",
-      "american",
-      "crime"
-    ],
-    "reactions": 2
+    "PREGUNTA": "¿Cómo te gustaría que te trataran al salir de prisión?",
+    "RESPUESTA": "Como una persona común y corriente, que no me recalquen lo malo que hice ni el por qué lo hice"
   },
   {
-    "id": 2,
-    "question": "He was an expert but not in a discipline",
-    "answer": "He was an expert but not in a discipline that anyone could fully appreciate. He knew how to hold the cone just right so that the soft server ice-cream fell into it at the precise angle to form a perfect cone each and every time. It had taken years to perfect and he could now do it without even putting any thought behind it.",
-    "userId": 13,
-    "tags": [
-      "french",
-      "fiction",
-      "english"
-    ],
-    "reactions": 2
+    "PREGUNTA": "Si hoy fuera el último día de su vida, ¿qué le gustaría hacer, cómo lo invertiría?",
+    "RESPUESTA": "Si hoy fuera el últumo día, de searía compartirlo con mi familia, especialimente con mis hijos"
   },
   {
-    "id": 3,
-    "question": "Dave watched as the forest burned up on the hill.",
-    "answer": "Dave watched as the forest burned up on the hill, only a few miles from her house. The car had been hastily packed and Marta was inside trying to round up the last of the pets. Dave went through his mental list of the most important papers and documents that they couldn't leave behind. He scolded himself for not having prepared these better in advance and hoped that he had remembered everything that was needed. He continued to wait for Marta to appear with the pets, but she still was nowhere to be seen.",
-    "userId": 32,
-    "tags": [
-      "magical",
-      "history",
-      "french"
-    ],
-    "reactions": 5
+    "PREGUNTA": "¿Qué haría de Medellín una mejor ciudad?",
+    "RESPUESTA": "Ayudar a los habitantes de calle con una resocialización, esto empezaría a cambiar la ciudad"
   },
   {
-    "id": 4,
-    "question": "All he wanted was a candy bar.",
-    "answer": "All he wanted was a candy bar. It didn't seem like a difficult request to comprehend, but the clerk remained frozen and didn't seem to want to honor the request. It might have had something to do with the gun pointed at his face.",
-    "userId": 12,
-    "tags": [
-      "mystery",
-      "english",
-      "american"
-    ],
-    "reactions": 1
+    "PREGUNTA": "¿Qué piensas sobre el papel del estado en la vida de las personas?",
+    "RESPUESTA": "Es precario, ya que mi situación actual lo que hizo la Fiscalía primero fue capturarme y luego hacer campo de investigación"
   },
   {
-    "id": 5,
-    "question": "Hopes and dreams were dashed that day.",
-    "answer": "Hopes and dreams were dashed that day. It should have been expected, but it still came as a shock. The warning signs had been ignored in favor of the possibility, however remote, that it could actually happen. That possibility had grown from hope to an undeniable belief it must be destiny. That was until it wasn't and the hopes and dreams came crashing down.",
-    "userId": 41,
-    "tags": [
-      "crime",
-      "mystery",
-      "love"
-    ],
-    "reactions": 2
+    "PREGUNTA": "¿Qué hacer cuando todos los días se repiten las mismas cosas que le han daño?",
+    "RESPUESTA": "Evitar las cosas que yo sé que me hacen daño"
   },
   {
-    "id": 6,
-    "question": "Dave wasn't exactly sure how he had ended up",
-    "answer": "Dave wasn't exactly sure how he had ended up in this predicament. He ran through all the events that had lead to this current situation and it still didn't make sense. He wanted to spend some time to try and make sense of it all, but he had higher priorities at the moment. The first was how to get out of his current situation of being naked in a tree with snow falling all around and no way for him to get down.",
-    "userId": 47,
-    "tags": [
-      "english",
-      "classic",
-      "american"
-    ],
-    "reactions": 3
+    "PREGUNTA": "¿Cómo crees que es un buen entorno laboral?",
+    "RESPUESTA": "Con un buen equipo de trabajo y una buena comunicación, pero sobre todo y lo más importante es que haya respeto"
   },
   {
-    "id": 7,
-    "question": "This is important to remember.",
-    "answer": "This is important to remember. Love isn't like pie. You don't need to divide it among all your friends and loved ones. No matter how much love you give, you can always give more. It doesn't run out, so don't try to hold back giving it as if it may one day run out. Give it freely and as much as you want.",
-    "userId": 12,
-    "tags": [
-      "magical",
-      "crime"
-    ],
-    "reactions": 0
+    "PREGUNTA": "¿Qué hacer cuando todos los días se repiten las mismas cosas que le han daño?",
+    "RESPUESTA": "Hacerse el bobo, porque no se puede uno cerrar en todo lo que pasa acá, que son cosas que no se pueden solucionar"
   },
   {
-    "id": 8,
-    "question": "One can cook on and with an open fire.",
-    "answer": "One can cook on and with an open fire. These are some of the ways to cook with fire outside. Cooking meat using a spit is a great way to evenly cook meat. In order to keep meat from burning, it's best to slowly rotate it.",
-    "userId": 31,
-    "tags": [
-      "american",
-      "english"
-    ],
-    "reactions": 9
+    "PREGUNTA": "¿Cómo ha transformado la privación de la libertad su visión sobre la vida?",
+    "RESPUESTA": "Sé que la vida tiene varias etapas, hay que saberlas llevar. Sé que se debe tratar con madurez, mucho respeto y tolerancia. Que Dios nos bendiga."
   },
   {
-    "id": 9,
-    "question": "There are different types of secrets.",
-    "answer": "There are different types of secrets. She had held onto plenty of them during her life, but this one was different. She found herself holding onto the worst type. It was the type of secret that could gnaw away at your insides if you didn't tell someone about it, but it could end up getting you killed if you did.",
-    "userId": 42,
-    "tags": [
-      "american",
-      "history",
-      "magical"
-    ],
-    "reactions": 2
+    "PREGUNTA": "¿Qué haría de Medellín una mejor ciudad?",
+    "RESPUESTA": "Más oportunidades de empelo, estudio y que le den oportunidades a las personas que, de una forma u otra, son profesionales pero que han estado privados de la libertad. Que no les cierren las pueras cuando salen a la sociedad."
   },
   {
-    "id": 10,
-    "question": "They rushed out the door.",
-    "answer": "They rushed out the door, grabbing anything and everything they could think of they might need. There was no time to double-check to make sure they weren't leaving something important behind. Everything was thrown into the car and they sped off. Thirty minutes later they were safe and that was when it dawned on them that they had forgotten the most important thing of all.",
-    "userId": 1,
-    "tags": [
-      "fiction",
-      "magical",
-      "history"
-    ],
-    "reactions": 4
+    "PREGUNTA": "¿Qué opinas del trabajo informal?",
+    "RESPUESTA": "Que es es una forma de sobrevivir, porque al no tener una mejor oportunidad laboral, es nuestra forma de subsistir y satisacer nuestras necesidades báscias, porque el Estado nos tiene en pleno abandono, solo existimos en las campañas."
   },
   {
-    "id": 11,
-    "question": "It wasn't quite yet time to panic.",
-    "answer": "It wasn't quite yet time to panic. There was still time to salvage the situation. At least that is what she was telling himself. The reality was that it was time to panic and there wasn't time to salvage the situation, but he continued to delude himself into believing there was.",
-    "userId": 25,
-    "tags": [
-      "mystery",
-      "american",
-      "history"
-    ],
-    "reactions": 5
+    "PREGUNTA": "¿Cómo te gustaría que te trataran al salir de prisión?",
+    "RESPUESTA": "Con respeto e igualdad"
   },
   {
-    "id": 12,
-    "question": "She was aware that things could go wrong.",
-    "answer": "She was aware that things could go wrong. In fact, she had trained her entire life in anticipation that things would go wrong one day. She had quiet confidence as she started to see that this was the day that all her training would be worthwhile and useful. At this point, she had no idea just how wrong everything would go that day.",
-    "userId": 26,
-    "tags": [
-      "love",
-      "english"
-    ],
-    "reactions": 7
+    "PREGUNTA": "¿Qué cosas de usted ha descubierto, a partir de la experiencia de estar privado de la libertad?",
+    "RESPUESTA": "Valorar la vida, a mis seres queridos y sobre todo, valorar la LIBERTAD, que es lo más preciado que tenemos."
   },
   {
-    "id": 13,
-    "question": "She wanted rainbow hair.",
-    "answer": "She wanted rainbow hair. That's what she told the hairdresser. It should be deep rainbow colors, too. She wasn't interested in pastel rainbow hair. She wanted it deep and vibrant so there was no doubt that she had done this on purpose.",
-    "userId": 44,
-    "tags": [
-      "mystery",
-      "classic",
-      "french"
-    ],
-    "reactions": 0
+    "PREGUNTA": "¿Cuáles son sus principales motivaciones?",
+    "RESPUESTA": "Mis hijos, mi familia, mi libertad"
   },
   {
-    "id": 14,
-    "question": "The paper was blank.",
-    "answer": "The paper was blank. It shouldn't have been. There should have been writing on the paper, at least a paragraph if not more. The fact that the writing wasn't there was frustrating. Actually, it was even more than frustrating. It was downright distressing.",
-    "userId": 1,
-    "tags": [
-      "mystery",
-      "english",
-      "love"
-    ],
-    "reactions": 0
+    "PREGUNTA": "¿Cómo se percibe a usted mismo?",
+    "RESPUESTA": "Como una persona hiperactiva y colaboradora, con errores y virtudes"
   },
   {
-    "id": 15,
-    "question": "The trees, therefore, must be such old",
-    "answer": "The trees, therefore, must be such old and primitive techniques that they thought nothing of them, deeming them so inconsequential that even savages like us would know of them and not be suspicious. At that, they probably didn't have too much time after they detected us orbiting and intending to land. And if that were true, there could be only one place where their civilization was hidden.",
-    "userId": 15,
-    "tags": [
-      "fiction",
-      "history",
-      "crime"
-    ],
-    "reactions": 1
+    "PREGUNTA": "¿Qué es la libertad?",
+    "RESPUESTA": "Libertad es hacer lo que yo quiero, así sea de corazón o de mente"
   },
   {
-    "id": 16,
-    "question": "There was only one way to do things in the Statton house.",
-    "answer": "There was only one way to do things in the Statton house. That one way was to do exactly what the father, Charlie, demanded. He made the decisions and everyone else followed without question. That was until today.",
-    "userId": 31,
-    "tags": [
-      "magical",
-      "french",
-      "american"
-    ],
-    "reactions": 5
+    "PREGUNTA": "¿Qué debería tener un niñx para desarrollarse plenamente?",
+    "RESPUESTA": "Amor y comprensión"
   },
   {
-    "id": 17,
-    "question": "She was in a hurry.",
-    "answer": "She was in a hurry. Not the standard hurry when you're in a rush to get someplace, but a frantic hurry. The type of hurry where a few seconds could mean life or death. She raced down the road ignoring speed limits and weaving between cars. She was only a few minutes away when traffic came to a dead standstill on the road ahead.",
-    "userId": 5,
-    "tags": [
-      "french",
-      "magical",
-      "english"
-    ],
-    "reactions": 0
+    "PREGUNTA": "Si hoy fuera el último día de su vida, ¿qué le gustaría hacer, cómo lo invertiría?",
+    "RESPUESTA": "Estar junto a mi familia sería mi mejor inversión"
   },
   {
-    "id": 18,
-    "question": "She had a terrible habit o comparing her life to others",
-    "answer": "She had a terrible habit o comparing her life to others. She realized that their life experiences were completely different than her own and that she saw only what they wanted her to see, but that didn't matter. She still compared herself and yearned for what she thought they had and she didn't.",
-    "userId": 28,
-    "tags": [
-      "history",
-      "french",
-      "love"
-    ],
-    "reactions": 3
+    "PREGUNTA": "¿Cómo ha transformado la privación de la libertad su visión sobre la vida?",
+    "RESPUESTA": "Aquí nos volvemos peores y no nos resocializamos"
   },
   {
-    "id": 19,
-    "question": "The rain and wind abruptly stopped.",
-    "answer": "The rain and wind abruptly stopped, but the sky still had the gray swirls of storms in the distance. Dave knew this feeling all too well. The calm before the storm. He only had a limited amount of time before all Hell broke loose, but he stopped to admire the calmness. Maybe it would be different this time, he thought, with the knowledge deep within that it wouldn't.",
-    "userId": 46,
-    "tags": [
-      "fiction",
-      "crime",
-      "magical"
-    ],
-    "reactions": 8
+    "PREGUNTA": "¿Qué debería tener un niñx para desarrollarse plenamente?",
+    "RESPUESTA": "Buena convivencia, buena crianza, los cuidados de su madre, buena alimentación, amor y paciencia"
   },
   {
-    "id": 20,
-    "question": "He couldn't remember exactly where he had read it",
-    "answer": "He couldn't remember exactly where he had read it, but he was sure that he had. The fact that she didn't believe him was quite frustrating as he began to search the Internet to find the article. It wasn't as if it was something that seemed impossible. Yet she insisted on always seeing the source whenever he stated a fact.",
-    "userId": 38,
-    "tags": [
-      "french",
-      "classic"
-    ],
-    "reactions": 9
+    "PREGUNTA": "¿Cuáles son los barrotes que impiden a los seres humanos vivir en libertad?",
+    "RESPUESTA": "Barrotes físicos, mentales y emocionales"
   },
   {
-    "id": 21,
-    "question": "He wandered down the stairs and into the basement",
-    "answer": "He wandered down the stairs and into the basement. The damp, musty smell of unuse hung in the air. A single, small window let in a glimmer of light, but this simply made the shadows in the basement deeper. He inhaled deeply and looked around at a mess that had been accumulating for over 25 years. He was positive that this was the place he wanted to live.",
-    "userId": 37,
-    "tags": [
-      "french",
-      "american"
-    ],
-    "reactions": 8
+    "PREGUNTA": "¿Qué crees que deberíamos trabajar como sociedad?",
+    "RESPUESTA": "El respeto, porque todos lo merecemos"
   },
   {
-    "id": 22,
-    "question": "She has seen this scene before.",
-    "answer": "She has seen this scene before. It had come to her in dreams many times before. She had to pinch herself to make sure it wasn't a dream again. As her fingers squeezed against her arm, she felt the pain. It was this pain that immediately woke her up.",
-    "userId": 30,
-    "tags": [
-      "classic",
-      "love",
-      "history"
-    ],
-    "reactions": 6
+    "PREGUNTA": "¿Qué opinas del trabajo informal?",
+    "RESPUESTA": "Es el modo de buscar cómo sobrevivir con sus negocios"
   },
   {
-    "id": 23,
-    "question": "It's an unfortunate reality that we don't teach people how to make money",
-    "answer": "It's an unfortunate reality that we don't teach people how to make money (beyond getting a 9 to 5 job) as part of our education system. The truth is there are a lot of different, legitimate ways to make money. That doesn't mean they are easy and that you won't have to work hard to succeed, but it does mean that if you're willing to open your mind a bit you don't have to be stuck in an office from 9 to 5 for the next fifty years o your life.",
-    "userId": 2,
-    "tags": [
-      "crime",
-      "english"
-    ],
-    "reactions": 4
+    "PREGUNTA": "¿Cómo crees que es un buen entorno laboral?",
+    "RESPUESTA": "Teniendo un espacio tranquilo, armonioso, donde uno pueda concentrarse en lo que está haciendo y tener en cuenta el disfrutar para que todo salga bien con buenos compañeros y buena música adecuada."
   },
   {
-    "id": 24,
-    "question": "The robot clicked disapprovingly.",
-    "answer": "The robot clicked disapprovingly, gurgled briefly inside its cubical interior and extruded a pony glass of brownish liquid. \"Sir, you will undoubtedly end up in a drunkard's grave, dead of hepatic cirrhosis,\" it informed me virtuously as it returned my ID card. I glared as I pushed the glass across the table.",
-    "userId": 34,
-    "tags": [
-      "crime",
-      "american",
-      "love"
-    ],
-    "reactions": 2
+    "PREGUNTA": "¿Qué crees que deberíamos trabajar como sociedad?",
+    "RESPUESTA": "Deberíamos trabajar lo que es la humildad, el emprendimiento, dejar tanta discriminación para así crecer como sociedad."
   },
   {
-    "id": 25,
-    "question": "It went through such rapid contortions",
-    "answer": "It went through such rapid contortions that the little bear was forced to change his hold on it so many times he became confused in the darkness, and could not, for the life of him, tell whether he held the sheep right side up, or upside down. But that point was decided for him a moment later by the animal itself, who, with a sudden twist, jabbed its horns so hard into his lowest ribs that he gave a grunt of anger and disgust.",
-    "userId": 27,
-    "tags": [
-      "fiction",
-      "history",
-      "french"
-    ],
-    "reactions": 3
+    "PREGUNTA": "¿Crees que la Universidad debería ser gratuita?",
+    "RESPUESTA": "Sí, aunque yo no sé leer ni escribir quiero estudiar y cuando salga, poder ir a la Universidad"
   },
   {
-    "id": 26,
-    "question": "She patiently waited for his number to be called.",
-    "answer": "She patiently waited for his number to be called. She had no desire to be there, but her mom had insisted that she go. She's resisted at first, but over time she realized it was simply easier to appease her and go. Mom tended to be that way. She would keep insisting until you wore down and did what she wanted. So, here she sat, patiently waiting for her number to be called.",
-    "userId": 27,
-    "tags": [
-      "french",
-      "mystery",
-      "crime"
-    ],
-    "reactions": 7
+    "PREGUNTA": "¿Qué cambiarías en este momento de tu vida?",
+    "RESPUESTA": "Cambiaría mi prototipo mental para elevar mi consciencia y para ser maestra reiky"
   },
   {
-    "id": 27,
-    "question": "Ten more steps.",
-    "answer": "If he could take ten more steps it would be over, but his legs wouldn't move. He tried to will them to work, but they wouldn't listen to his brain. Ten more steps and it would be over but it didn't appear he would be able to do it.",
-    "userId": 17,
-    "tags": [
-      "mystery",
-      "classic",
-      "love"
-    ],
-    "reactions": 4
+    "PREGUNTA": "Si se te apareciera un hada madrina y te quisiera conceder un solo deseo, ¿qué le pedirías?",
+    "RESPUESTA": "Estar al lado de mi madre y mis hijos"
   },
   {
-    "id": 28,
-    "question": "He had three simple rules by which he lived.",
-    "answer": "He had three simple rules by which he lived. The first was to never eat blue food. There was nothing in nature that was edible that was blue. People often asked about blueberries, but everyone knows those are actually purple. He understood it was one of the stranger rules to live by, but it had served him well thus far in the 50+ years of his life.",
-    "userId": 22,
-    "tags": [
-      "crime",
-      "love"
-    ],
-    "reactions": 2
+    "PREGUNTA": "¿De qué manera crees que el arte ha influido en tu vida y en tu proceso estando privadx de la libertad?",
+    "RESPUESTA": "El arte ha permeado toda mi existencia, ha sido mi forma de expresión y se convirtió en mi profesión. En mi estadía en Pedregal se ha convertido en mi trabajo y también en mi paz y refugio ante los pensamientos de desesperanza, en la forma como expreso mis deseos y sentimientos y en una herramienta que me permite ser libre al permitirme soñar, crear y reconstruir mi existencia."
   },
   {
-    "id": 29,
-    "question": "The chair sat in the corner where it had been",
-    "answer": "The chair sat in the corner where it had been for over 25 years. The only difference was there was someone actually sitting in it. How long had it been since someone had done that? Ten years or more he imagined. Yet there was no denying the presence in the chair now.",
-    "userId": 38,
-    "tags": [
-      "mystery",
-      "american"
-    ],
-    "reactions": 6
+    "PREGUNTA": "¿Cómo se vive la relación con la familia que esá afuera?",
+    "RESPUESTA": "Es difícil, ya que no contamos con los medios suficientes para sentirnos cercanos, solo un teléfono alámbrico nos permite escucharlos en un tiempo estipulado, aparte de que son costosas las llamadas. El contacto físico se nos imposibilita."
   },
   {
-    "id": 30,
-    "question": "Things aren't going well at all",
-    "answer": "Things aren't going well at all with mom today. She is just a limp noodle and wants to sleep all the time. I sure hope that things get better soon.",
-    "userId": 2,
-    "tags": [
-      "american",
-      "love",
-      "fiction"
-    ],
-    "reactions": 0
+    "PREGUNTA": "¿Cuál es su mayor temor?",
+    "RESPUESTA": "La ira de Dios y perder a mi familia"
+  },
+  {
+    "PREGUNTA": "¿Con cuál canción sacaría a bailar a la persona que más quiere?",
+    "RESPUESTA": "Los caminos de la vida de Los Diablitos"
+  },
+  {
+    "PREGUNTA": "¿Cree en el sistema carcelario como un esquema de resocialización?",
+    "RESPUESTA": "Sí, ya que tengo una experiencia que me ha marcado la vida. Creo que en el sistema porque la justicia viene de Dios y yo creo en su palabra que me prepara para la resocialización"
+  },
+  {
+    "PREGUNTA": "¿Qué haría diferente en su vida?",
+    "RESPUESTA": "Buscar más a Dios porque él lo puede todo y siempre está ahí pase lo que nos pase."
+  },
+  {
+    "PREGUNTA": "¿Te gustaría vivir en otro país? ¿Por qué?",
+    "RESPUESTA": "No, porque estoy muy bien en el mío. Vive Colombia, viaja por ela. Estoy muy orgullosa de mi Colombia."
+  },
+  {
+    "PREGUNTA": "Si se te apareciera un hada madrina y te quisiera conceder un solo deseo, ¿qué le pedirías?",
+    "RESPUESTA": "Saber de mi papá y mi libertad para poder estar con mi hija y mi familia."
+  },
+  {
+    "PREGUNTA": "¿Cómo describirías el barrio soñado?",
+    "RESPUESTA": "Sin conflictos, que haya unión, respeto, solidaridad, armonía."
+  },
+  {
+    "PREGUNTA": "¿Qué cambiarías en este momento de tu vida?",
+    "RESPUESTA": "El lugar en que me encuentro y los pensamientos negativos"
+  },
+  {
+    "PREGUNTA": "¿Cómo describirías el barrio soñado?",
+    "RESPUESTA": "Como una comunidad unida en donde se desarrollen actividades para las personas; que nos podamos ayudar y hacer el bien, pensando siempre en los demás."
+  },
+  {
+    "PREGUNTA": "¿Qué es lo que más añora de la vida fuera?",
+    "RESPUESTA": "La salud que no tengo aquí adentro"
+  },
+  {
+    "PREGUNTA": "¿Qué es lo que más le gusta hacer?",
+    "RESPUESTA": "Comer, viajar, leer, dibujar y trabajar"
+  },
+  {
+    "PREGUNTA": "¿Cree en el sistema carcelario como un esquema de resocialización?",
+    "RESPUESTA": "No, porque el INPEC es un sistema corrupto que pisotea a las internas, creyendo que porque tienen un uniforme pueden venir a violar e irrespetar a las internas del complejo."
+  },
+  {
+    "PREGUNTA": "¿Cómo se vive la relación con la familia que esá afuera?",
+    "RESPUESTA": "Mi familia me apoya y es lo mejor de mi vida"
+  },
+  {
+    "PREGUNTA": "¿Con cuál canción sacaría a bailar a la persona que más quiere?",
+    "RESPUESTA": "Una bachata de Romeo Santos: Qué dirías esta noche si te robo un besito."
+  },
+  {
+    "PREGUNTA": "¿Cuál es su mayor temor?",
+    "RESPUESTA": "Mi mayor temos es hacerle daño a mis hijos y a mi familia o volver a este lugar. Le pido a mi Dios mucha fuerza y no sentir temor de perder a mis seres queridos. Dios los bendiga a todos."
+  },
+  {
+    "PREGUNTA": "¿Te gustaría vivir en otro país? ¿Por qué?",
+    "RESPUESTA": "Sí, para cambiar de ambiente"
+  },
+  {
+    "PREGUNTA": "¿Qué haría diferente en su vida?",
+    "RESPUESTA": "Sería igual, como siempre"
+  },
+  {
+    "PREGUNTA": "¿Qué es lo que más añora de la vida fuera?",
+    "RESPUESTA": "A mis niñas, compartir con ellas todo lo que estas rejas me han quitado y darles todo mi tiempo. Ellas son mi vida."
   }
 ]
 
