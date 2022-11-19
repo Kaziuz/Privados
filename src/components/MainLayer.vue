@@ -10,7 +10,7 @@
           :class="getPosX"
           class="block text-4xl font-black"
         >
-          {{ props.qa_obj?.question }}
+          {{ props.qa_obj?.PREGUNTA }}
         </div>
       </transition>
       <transition name="answerFade">
@@ -18,7 +18,7 @@
           :class="`${posXText[generatePosX]}`"
           v-if="answer" class="ml-8 text-2xl italic p-4 font-thin"
         >
-          {{ props.qa_obj?.answer }}
+          {{ props.qa_obj?.RESPUESTA }}
         </div>
       </transition>
     </div>

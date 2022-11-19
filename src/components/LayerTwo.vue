@@ -5,7 +5,7 @@
       class="relative flex w-screen h-screen pt-64 px-8"
     >
       <div class="block text-4xl font-black" :class="getPosX">
-        {{ props.qa_obj?.question }}
+        {{ props.qa_obj?.PREGUNTA }}
       </div>
       <div class="ml-8 block text-2xl italic p-4 font-thin" :class="posXText[generatePosX]">
         {{ props.qa_obj?.answer }}
