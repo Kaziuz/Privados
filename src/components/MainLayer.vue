@@ -16,7 +16,7 @@
       <transition name="answerFade">
         <div
           :class="`${posXText[generatePosX]}`"
-          v-if="answer" class="text-2xl italic p-4 font-thin"
+          v-if="answer" class="ml-8 text-2xl italic p-4 font-thin"
         >
           {{ props.qa_obj?.answer }}
         </div>
@@ -31,7 +31,7 @@ import { watchEffect } from 'vue'
 import { ref } from 'vue'
 
 const props = defineProps(['milliseconds', 'qa_obj'])
-const posXText = ['text-left', 'text-center', 'text-right']
+const posXText = ['text-left']
 const posY = ['flex-col', 'flex-col-reverse']
 const justify = [
   'justify-around',
@@ -57,7 +57,7 @@ const generate = () => {
 watchEffect(() => {
   console.log('time', props.milliseconds)
   switch (props.milliseconds) {
-    case (1): {
+    case (0): {
       generate()
       question.value = true
       return

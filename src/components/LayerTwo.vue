@@ -2,12 +2,12 @@
   <div class="absolute text-white">
     <div
       :class="`${getReverse} ${getJustify}`"
-      class="relative flex w-screen h-screen"
+      class="relative flex w-screen h-screen pt-64 px-8"
     >
       <div class="block text-4xl font-black" :class="getPosX">
         {{ props.qa_obj?.question }}
       </div>
-      <div class="block text-2xl italic p-4 font-thin" :class="posXText[generatePosX]">
+      <div class="ml-8 block text-2xl italic p-4 font-thin" :class="posXText[generatePosX]">
         {{ props.qa_obj?.answer }}
       </div>
     </div>
@@ -20,7 +20,7 @@ import { watchEffect } from 'vue'
 import { ref } from 'vue'
 
 const props = defineProps(['milliseconds', 'qa_obj'])
-const posXText = ['text-left', 'text-center', 'text-right']
+const posXText = ['text-left']
 const posY = ['flex-col', 'flex-col-reverse']
 const justify = [
   'justify-around',
