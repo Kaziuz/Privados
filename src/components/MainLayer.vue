@@ -1,24 +1,26 @@
 <template>
-  <div class="absolute text-white">
+  <div
+    :class="`${posXText} ${posYText}`"
+    class="absolute text-white text-center"
+  >
     <div
-      :class="`${getReverse} ${getJustify}`"
-      class="relative flex w-screen h-screen p-8"
+      :class="width"
+      class="relative"
     >
+      <transition name="answerFade">
+        <div
+          v-if="answer"
+          class="text-2xl italic font-thin"
+        >
+          {{ props.qa_obj?.RESPUESTA }}
+        </div>
+      </transition>
       <transition name="questionFade">
         <div
           v-if="question"
-          :class="getPosX"
-          class="block text-4xl font-black"
+          class="text-4xl font-black"
         >
           {{ props.qa_obj?.PREGUNTA }}
-        </div>
-      </transition>
-      <transition name="answerFade">
-        <div
-          :class="`${posXText[generatePosX]}`"
-          v-if="answer" class="ml-8 text-2xl italic p-4 font-thin"
-        >
-          {{ props.qa_obj?.RESPUESTA }}
         </div>
       </transition>
     </div>
@@ -26,64 +28,60 @@
 </template>
 
 <script setup>
-import generateRandomNumber from './../composables/generateRandomNumber'
 import { watchEffect } from 'vue'
 import { ref } from 'vue'
 
-const props = defineProps(['milliseconds', 'qa_obj'])
-const posXText = ['text-left']
-const posY = ['flex-col', 'flex-col-reverse']
-const justify = [
-  'justify-around',
-  'justify-center',
-  'justify-start',
-  'justify-end'
+const props = defineProps([
+  'milliseconds',
+  'qa_obj',
+  'generate',
+  'startQuestion',
+  'endQuestion',
+  'startAnswer',
+  'endAnswer',
+  'width'
+])
+const posX = [
+  'left-1/2','left-1/3','left-2/3',
+]
+const posY = [
+  'bottom-1/2','bottom-1/3','bottom-1/4',
 ]
 const question = ref(false)
 const answer = ref(false)
 const generatePosX = ref(0)
 const generatePosY = ref(0)
-const generateJustify = ref(0)
-const getPosX = ref('')
-const getReverse = ref('')
-const getJustify = ref('')
 
 const generate = () => {
-  generatePosX.value = generateRandomNumber(0, 2)
-  generatePosY.value = generateRandomNumber(0, 1)
-  generateJustify.value = generateRandomNumber(0,3)
+  generatePosX.value = Math.floor(Math.random() * 2)
+  generatePosY.value = Math.floor(Math.random() * 2)
 }
 
 watchEffect(() => {
-  console.log('time', props.milliseconds)
   switch (props.milliseconds) {
-    case (0): {
+    case (props.generate): {
       generate()
+      return
+    }
+    case (props.startQuestion): {
       question.value = true
       return
     }
-    case (4): {
+    case (props.startAnswer): {
       answer.value = true
       return
     }
-    case (28): {
-      // question.value = false
+    case (props.endAnswer): {
+      answer.value = false
       return
     }
-    case (30): {
+    case (props.endQuestion): {
       question.value = false
-      answer.value = false
       return
     }
   }
 })
-
-watchEffect(() => {
-  const posText = posXText[generatePosX.value]
-  posText ?  getPosX.value = posText : getPosX.value = posXText[2]
-  const posytext = posY[generatePosY.value]
-  posytext ? getReverse.value = posytext : getReverse.value = posY[1]
-  const posjustify = justify[generateJustify.value]
-  posjustify ? getJustify.value = posjustify : getJustify.value = justify[2]
-})
+const posXText = posX[generatePosX.value]
+const posYText = posY[generatePosY.value]
+console.log('oe', posXText, posYText)
 </script>
