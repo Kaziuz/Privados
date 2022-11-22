@@ -11,68 +11,68 @@
           stop
         </button>
       </div>
+      
+        <!-- <app-main-layer
+        v-if="showLayerFour"
+        :qa_obj=queueData[2]
+        :class="opacity[3]"
+        :milliseconds="currentTimeAnimation"
+        width="w-[32rem]"
+        :generate=4
+        :startQuestion=5
+        :endQuestion=15
+        :startAnswer=6
+        :endAnswer=13
+        :posx="positionsX[2]"
+        :posy="positionsY[2]"
+      />
 
-      <transition name="layerTwo" appear>
-        <div v-if="showLayerFive">
-          <app-layer-one
-            :qa_obj=queueData[3]
-            style="opacity: 40%"
-            :milliseconds="currentTimeAnimation"
-            :generate=4
-            class="ml-80"
-          />
-        </div>
-      </transition>
-
-      <transition name="layerTwo" appear>
-        <div v-if="showLayerFour">
-          <app-layer-one
-            :qa_obj=queueData[2]
-            style="opacity: 40%"
-            :milliseconds="currentTimeAnimation"
-            :generate=0
-            class="mr-44"
-          />
-        </div>
-      </transition>
-
-      <transition name="layerTwo" appear>
-        <div v-if="showLayerThree">
-          <app-layer-one
-            :qa_obj=queueData[1]
-            style="opacity: 20%"
-            :milliseconds="currentTimeAnimation"
-            :generate=2
-            class="mr-80"
-          />
-        </div>
-      </transition>
-
-      <transition name="layerTwo" appear>
-        <div v-if="showLayerTwo">
-          <app-layer-one
-            :qa_obj=queueData[3]
-            style="opacity: 10%"
-            :milliseconds="currentTimeAnimation"
-            :generate=1
-            class="ml-36"
-          />
-        </div>
-      </transition>
-
+      <app-main-layer
+        v-if="showLayerThree"
+        :qa_obj=queueData[1]
+        :class="opacity[0]"
+        :milliseconds="currentTimeAnimation"
+        width="w-[32rem]"
+        :generate=2
+        :startQuestion=3
+        :endQuestion=16
+        :startAnswer=2
+        :endAnswer=14
+        :posx="positionsX[3]"
+        :posy="positionsY[3]"
+      />
+        <app-main-layer
+          v-if="showLayerTwo"
+          :qa_obj=queueData[3]
+          :class="opacity[1]"
+          :milliseconds="currentTimeAnimation"
+          width="w-[32rem]"
+          :generate=1
+          :startQuestion=2
+          :endQuestion=17
+          :startAnswer=3
+          :endAnswer=15
+          :posx="positionsX[1]"
+          :posy="positionsY[1]"
+        /> -->
       <!-- Main layer -->
+      
       <app-main-layer
         v-if="showLayerOne"
         :qa_obj=queueData[0]
-        style="opacity: 100%"
+        :class="opacity[2]"
         :milliseconds="currentTimeAnimation"
-        width="w-96"
+        width="w-[32rem]"
+        class="bg-red-500"
         :generate=3
         :startQuestion=4
         :endQuestion=18
         :startAnswer=6
         :endAnswer=16
+        :posx="positionsX[0]"
+        :posy="positionsY[0]"
       />
+      
     </div>
   </div>
 </template>
@@ -103,6 +103,10 @@ export default {
     const showLayerThree = ref(false)
     const showLayerFour = ref(false)
     const showLayerFive = ref(false)
+
+    let positionsX = [0, 1, 2, 3]
+    let positionsY = [1,2,3,0]
+    let opacity = [ 'opacity-40','opacity-20','opacity-10','opacity-100']
 
     let queueData = ref([])
     queueData.value = dummyData.slice(0,-3)
@@ -178,6 +182,9 @@ export default {
         case (20): {
           showLayerFour.value = false
           nextFrame.value = nextFrame.value + 1
+          positionsX = positionsX.sort(() => Math.random() -.5 )
+          positionsY = positionsY.sort(() => Math.random() -.5 )
+          opacity = opacity.sort(() => Math.random() -.5)
           return
         }
       }
@@ -197,7 +204,7 @@ export default {
       }
     })
 
-    return { queueData, startProgram, currentTimeAnimation, showLayerFour, showLayerOne, showLayerTwo, showLayerThree, showLayerFive }
+    return { queueData, startProgram, currentTimeAnimation, showLayerFour, showLayerOne, showLayerTwo, showLayerThree, showLayerFive, positionsX, positionsY, opacity }
   }
 }
 </script>

@@ -1,28 +1,32 @@
 <template>
-  <div
-    :class="`${posXText} ${posYText}`"
-    class="absolute text-white text-center"
-  >
+  <div class="w-screen h-screen">
     <div
-      :class="width"
-      class="relative"
+      :class="`${posXText} ${posYText}`"
+      class="absolute text-white text-center"
     >
-      <transition name="answerFade">
-        <div
-          v-if="answer"
-          class="text-2xl italic font-thin"
-        >
-          {{ props.qa_obj?.RESPUESTA }}
+      <div
+        :class="width"
+        class="relative"
+      >
+        <div class="absolute top-[128px]">
+          <transition name="questionFade">
+            <div
+              v-if="question"
+              class="text-4xl font-black"
+            >
+              {{ props.qa_obj?.PREGUNTA }}
+            </div>
+          </transition>
+          <transition name="answerFade">
+            <div
+              v-if="answer"
+              class="text-2xl italic font-thin relative "
+            >
+              {{ props.qa_obj?.RESPUESTA }}
+            </div>
+          </transition>
         </div>
-      </transition>
-      <transition name="questionFade">
-        <div
-          v-if="question"
-          class="text-4xl font-black"
-        >
-          {{ props.qa_obj?.PREGUNTA }}
-        </div>
-      </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -39,28 +43,22 @@ const props = defineProps([
   'endQuestion',
   'startAnswer',
   'endAnswer',
-  'width'
+  'width',
+  'posx',
+  'posy'
 ])
-const posX = [
-  'left-1/2','left-1/3','left-2/3',
-]
-const posY = [
-  'bottom-1/2','bottom-1/3','bottom-1/4',
-]
+const posX = [ 'left-[13%]','left-[25%]','left-[50%]','left-[70%]']
+const posY = [ 'bottom-[30%]','bottom-[40%]','bottom-[60%]','bottom-[70%]']
+
+
 const question = ref(false)
 const answer = ref(false)
-const generatePosX = ref(0)
-const generatePosY = ref(0)
 
-const generate = () => {
-  generatePosX.value = Math.floor(Math.random() * 2)
-  generatePosY.value = Math.floor(Math.random() * 2)
-}
 
 watchEffect(() => {
   switch (props.milliseconds) {
     case (props.generate): {
-      generate()
+      // generate()
       return
     }
     case (props.startQuestion): {
@@ -81,7 +79,7 @@ watchEffect(() => {
     }
   }
 })
-const posXText = posX[generatePosX.value]
-const posYText = posY[generatePosY.value]
+const posXText = posX[props.posx]
+const posYText = posY[props.posy]
 console.log('oe', posXText, posYText)
 </script>

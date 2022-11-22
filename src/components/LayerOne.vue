@@ -1,10 +1,10 @@
 <template>
   <div
-  :class="`${posYText}`"
-    class="absolute text-white text-center left-1/2"
+    :class="`${posXText} ${posYText}`"
+    class="absolute text-white text-center"
   >
     <div
-      class="relative w-96"
+      class="relative block w-[32rem]"
     >
       <div class="text-4xl font-black">
         {{ props.qa_obj?.PREGUNTA }}
@@ -28,31 +28,21 @@ const props = defineProps([
   'endQuestion',
   'startAnswer',
   'endAnswer',
+  'posx',
+  'posy'
 ])
-const posX = [
-  'left-1/2','left-1/3','left-2/3',
-]
-const posY = [
-  'bottom-1/2','bottom-1/3','bottom-1/4',
-]
-const generatePosX = ref(0)
-const generatePosY = ref(0)
-
-const generate = () => {
-  generatePosX.value = Math.floor(Math.random() * 2)
-  generatePosY.value = Math.floor(Math.random() * 2)
-}
+const posX = [ 'left-[20%]','left-[40%]','left-[60%]','left-[80%]']
+const posY = [ 'bottom-[20%]','bottom-[40%]','bottom-[60%]','bottom-[70%]']
 
 watchEffect(() => {
   switch (props.milliseconds) {
     case (props.generate): {
-      generate()
+      // generate()
       return
     }
   }
 })
 
-const posXText = posX[generatePosX.value]
-const posYText = posY[generatePosY.value]
-console.log('oe', posXText, posYText)
+const posXText = posX[props.posx]
+const posYText = posY[props.posy]
 </script>
