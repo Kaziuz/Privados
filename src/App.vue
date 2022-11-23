@@ -11,68 +11,63 @@
           stop
         </button>
       </div>
-      
-        <!-- <app-main-layer
-        v-if="showLayerFour"
-        :qa_obj=queueData[2]
-        :class="opacity[3]"
-        :milliseconds="currentTimeAnimation"
-        width="w-[32rem]"
-        :generate=4
-        :startQuestion=5
-        :endQuestion=15
-        :startAnswer=6
-        :endAnswer=13
-        :posx="positionsX[2]"
-        :posy="positionsY[2]"
-      />
 
-      <app-main-layer
-        v-if="showLayerThree"
-        :qa_obj=queueData[1]
-        :class="opacity[0]"
-        :milliseconds="currentTimeAnimation"
-        width="w-[32rem]"
-        :generate=2
-        :startQuestion=3
-        :endQuestion=16
-        :startAnswer=2
-        :endAnswer=14
-        :posx="positionsX[3]"
-        :posy="positionsY[3]"
-      />
-        <app-main-layer
-          v-if="showLayerTwo"
-          :qa_obj=queueData[3]
-          :class="opacity[1]"
-          :milliseconds="currentTimeAnimation"
-          width="w-[32rem]"
-          :generate=1
-          :startQuestion=2
-          :endQuestion=17
-          :startAnswer=3
-          :endAnswer=15
-          :posx="positionsX[1]"
-          :posy="positionsY[1]"
-        /> -->
-      <!-- Main layer -->
-      
       <app-main-layer
         v-if="showLayerOne"
         :qa_obj=queueData[0]
-        :class="opacity[2]"
+        :posx="positionsX[0]"
+        :posy="positionsY[0]"
+        :class="opacity[0]"
         :milliseconds="currentTimeAnimation"
         width="w-[32rem]"
-        class="bg-red-500"
         :generate=3
         :startQuestion=4
         :endQuestion=18
         :startAnswer=6
         :endAnswer=16
-        :posx="positionsX[0]"
-        :posy="positionsY[0]"
       />
-      
+      <app-main-layer
+        v-if="showLayerOne"
+        :qa_obj=queueData[1]
+        :posx="positionsX[1]"
+        :posy="positionsY[1]"
+        :class="opacity[1]"
+        :milliseconds="currentTimeAnimation"
+        width="w-[32rem]"
+        :generate=3
+        :startQuestion=4
+        :endQuestion=18
+        :startAnswer=6
+        :endAnswer=16
+      />
+      <app-main-layer
+        v-if="showLayerOne"
+        :qa_obj=queueData[2]
+        :posx="positionsX[2]"
+        :posy="positionsY[2]"
+        :class="opacity[2]"
+        :milliseconds="currentTimeAnimation"
+        width="w-[32rem]"
+        :generate=3
+        :startQuestion=4
+        :endQuestion=18
+        :startAnswer=6
+        :endAnswer=16
+      />
+      <app-main-layer
+        v-if="showLayerOne"
+        :qa_obj=queueData[3]
+        :posx="positionsX[3]"
+        :posy="positionsY[3]"
+        :class="opacity[3]"
+        :milliseconds="currentTimeAnimation"
+        width="w-[32rem]"
+        :generate=3
+        :startQuestion=4
+        :endQuestion=18
+        :startAnswer=6
+        :endAnswer=16
+      />      
     </div>
   </div>
 </template>
@@ -81,12 +76,10 @@
 import _ from 'lodash'
 import { reactive, watchEffect, ref } from 'vue'
 import dummyData from './dummyData.js'
-import LayerOne from './components/LayerOne.vue'
 import MainLayer from './components/MainLayer.vue'
 export default {
   components: {
     'app-main-layer': MainLayer,
-    'app-layer-one': LayerOne,
   },
   setup() {
     const startProgram = ref(false)
@@ -104,8 +97,8 @@ export default {
     const showLayerFour = ref(false)
     const showLayerFive = ref(false)
 
-    let positionsX = [0, 1, 2, 3]
-    let positionsY = [1,2,3,0]
+    let positionsX = [ 'left-15p','left-35p','left-50p','left-70p']
+    let positionsY = [ 'bottom-50p','bottom-60p','bottom-80p','bottom-90p']
     let opacity = [ 'opacity-40','opacity-20','opacity-10','opacity-100']
 
     let queueData = ref([])
@@ -182,9 +175,9 @@ export default {
         case (20): {
           showLayerFour.value = false
           nextFrame.value = nextFrame.value + 1
-          positionsX = positionsX.sort(() => Math.random() -.5 )
-          positionsY = positionsY.sort(() => Math.random() -.5 )
-          opacity = opacity.sort(() => Math.random() -.5)
+          positionsX.value = positionsX.sort(() => Math.random() -.5 )
+          positionsY.value = positionsY.sort(() => Math.random() -.5 )
+          opacity.value = opacity.sort(() => Math.random() -.5)
           return
         }
       }

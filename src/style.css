@@ -77,3 +77,30 @@
 .answerFade-leave-active {
   transition: opacity 1s ease-out;
 }
+
+.left-0p{left: 0%;}
+  /* '5p': '5%',
+  '10p': '10%', */
+.left-15p{ left: 15%;}
+  /* '20p': '20%', */
+.left-35p{left: 35%;}
+  /* '30p': '30%',
+  '35p': '35%',
+  '40p': '40%',
+  '45p': '45%',         */
+.left-50p{left:50%;}
+  /* '55p': '55%',
+  '60p': '60%',
+  '65p': '65%', */
+.left-70p{left:70%;}
+  /* '75p': '75%',
+  '80p': '80%',
+  '85p': '85%',
+  '90p': '90%',
+  '95p': '95%',
+  '100p': '100%', */
+
+.bottom-50p{bottom:50%;}
+.bottom-60p{bottom:60%;}
+.bottom-80p{bottom:80%;}
+.bottom-90p{bottom:90%;}

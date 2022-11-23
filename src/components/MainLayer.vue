@@ -1,15 +1,12 @@
 <template>
-  <div class="w-screen h-screen">
+  <div class="absolute w-screen h-screen">
     <div
-      :class="`${posXText} ${posYText}`"
-      class="absolute text-white text-center"
-    >
-      <div
-        :class="width"
-        class="relative"
-      >
-        <div class="absolute top-[128px]">
-          <transition name="questionFade">
+      class="text-white text-center w-screen h-screen">
+    <div class="absolute" :class="`${posx} ${posy} ${width}`">
+      <div class="relative">
+
+      <div class="absolute top-[128px]">
+                <transition name="questionFade">
             <div
               v-if="question"
               class="text-4xl font-black"
@@ -17,15 +14,17 @@
               {{ props.qa_obj?.PREGUNTA }}
             </div>
           </transition>
+
           <transition name="answerFade">
             <div
               v-if="answer"
-              class="text-2xl italic font-thin relative "
+              class="text-2xl italic font-thin relative"
             >
               {{ props.qa_obj?.RESPUESTA }}
             </div>
           </transition>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -47,9 +46,6 @@ const props = defineProps([
   'posx',
   'posy'
 ])
-const posX = [ 'left-[13%]','left-[25%]','left-[50%]','left-[70%]']
-const posY = [ 'bottom-[30%]','bottom-[40%]','bottom-[60%]','bottom-[70%]']
-
 
 const question = ref(false)
 const answer = ref(false)
@@ -79,7 +75,5 @@ watchEffect(() => {
     }
   }
 })
-const posXText = posX[props.posx]
-const posYText = posY[props.posy]
-console.log('oe', posXText, posYText)
+
 </script>
