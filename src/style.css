@@ -5,6 +5,9 @@
 /* CUSTOM ANIMATION CSS FOR VUE PRUPOSES */
 /* WRAPPER LAYERS */
 
+body {
+  @apply bg-black;
+}
 /* OTHER */
 .layerTwo-enter-from {
   opacity: 0;
@@ -81,18 +84,26 @@
 .left-0p{left: 0%;}
   /* '5p': '5%',
   '10p': '10%', */
+  .left-5p{ left: 5%;}
+.left-10p{ left: 10%;}
 .left-15p{ left: 15%;}
   /* '20p': '20%', */
-.left-35p{left: 35%;}
+  .left-25p{left: 25%;}
+  .left-30p{left: 30%;}
+  .left-35p{left: 35%;}
   /* '30p': '30%',
   '35p': '35%',
   '40p': '40%',
   '45p': '45%',         */
+  .left-40p{left:40%;}
+  .left-45p{left:45%;}
 .left-50p{left:50%;}
   /* '55p': '55%',
   '60p': '60%',
   '65p': '65%', */
-.left-70p{left:70%;}
+  .left-60p{left:60%;}
+  .left-65p{left:65%;}
+  .left-70p{left:70%;}
   /* '75p': '75%',
   '80p': '80%',
   '85p': '85%',
