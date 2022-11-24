@@ -1,17 +1,16 @@
 <template>
-  <div class="block w-full h-screen font-sans">
-    <div class="w-screen h-screen bg-black px-8 py-8">
-      <div class="container absolute z-10">
-        <button @click="startProgram = true"
+  <div class="block w-full h-screen bg-black font-sans mt-[200px] overflow-hidden">
+    <div class="container top-0 z-10">
+        <!-- <button @click="startProgram = true"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           start
         </button>
         <button @click="startProgram = false"
           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           stop
-        </button>
+        </button> -->
       </div>
-
+    <div class="w-screen h-screen overflow-hidden">
       <app-main-layer
         v-if="showLayerOne"
         :qa_obj=queueData[0]
@@ -77,12 +76,21 @@ import _ from 'lodash'
 import { reactive, watchEffect, ref } from 'vue'
 import dummyData from './dummyData.js'
 import MainLayer from './components/MainLayer.vue'
+
+// const data = ref(null)
+// const error = ref(null)
+
+// fetch('https://drive.google.com/uc?export=download&id=1WxkUX93tn4PjGN1BHyZc-cZbjH0T_s7K')
+//   .then((res) => res.json())
+//   .then((json) => (data.value = json))
+//   .catch((err) => (error.value = err))
+
 export default {
   components: {
     'app-main-layer': MainLayer,
   },
   setup() {
-    const startProgram = ref(false)
+    const startProgram = ref(true)
     let interval = () => { }
     let startTime = null
     const timeMilliseconds = ref(0)
@@ -97,7 +105,7 @@ export default {
     const showLayerFour = ref(false)
     const showLayerFive = ref(false)
 
-    let positionsX = [ 'left-15p','left-35p','left-50p','left-70p']
+    let positionsX = [ 'left-10p','left-30p','left-45p','left-65p']
     let positionsY = [ 'bottom-50p','bottom-60p','bottom-80p','bottom-90p']
     let opacity = [ 'opacity-40','opacity-20','opacity-10','opacity-100']
 
