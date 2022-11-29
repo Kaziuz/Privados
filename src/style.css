@@ -43,7 +43,7 @@ body {
 }
 /* Duración entre el estado from y to de fade-enter */
 .questionFade-enter-active {
-  transition: opacity 1s ease-in;
+  transition: opacity 4s ease-in;
 }
 /* Estado inicial del valor a animar (cuando se va a acabar la animación)*/
 .questionFade-leave-from {
@@ -54,7 +54,7 @@ body {
   opacity: 0;
 }
 .questionFade-leave-active {
-  transition: opacity 1s ease-out;
+  transition: opacity 4s ease-out;
 }
 
 /* Respuesta */
@@ -67,7 +67,7 @@ body {
 }
 /* Duración entre el estado from y to de fade-enter */
 .answerFade-enter-active {
-  transition: opacity 3s ease-in;
+  transition: opacity 4s ease-in;
 }
 /* Estado inicial del valor a animar (cuando se va a acabar la animación)*/
 .answerFade-leave-from {
@@ -78,7 +78,7 @@ body {
   opacity: 0;
 }
 .answerFade-leave-active {
-  transition: opacity 1s ease-out;
+  transition: opacity 4s ease-out;
 }
 
 .left-0p{left: 0%;}
