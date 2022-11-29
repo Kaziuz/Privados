@@ -3,10 +3,11 @@
     <div
       class="text-white text-center w-screen h-screen">
     <div class="absolute" :class="`${posx} ${posy} ${width}`">
+      <div v-if="debug" class="text-white text-xl">{{props.milliseconds}}</div>
       <div class="relative">
 
       <div class="absolute top-[128px]">
-                <transition name="questionFade">
+            <transition name="questionFade">
             <div
               v-if="question"
               class="text-4xl font-black"
@@ -35,6 +36,7 @@ import { watchEffect } from 'vue'
 import { ref } from 'vue'
 
 const props = defineProps([
+  'debug',
   'milliseconds',
   'qa_obj',
   'generate',

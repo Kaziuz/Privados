@@ -1,5 +1,5 @@
 <template>
-  <div class="block w-full h-screen bg-black font-sans mt-[200px] overflow-hidden">
+  <div class="block w-full h-screen bg-black font-sans overflow-hidden">
     <div class="container top-0 z-10">
         <!-- <button @click="startProgram = true"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -9,63 +9,70 @@
           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           stop
         </button> -->
+        <div v-if="debug" class="text-white text-xl">
+        {{currentTimeAnimation}}
+      </div>
       </div>
     <div class="w-screen h-screen overflow-hidden">
       <app-main-layer
+        :debug="debug"
         v-if="showLayerOne"
         :qa_obj=queueData[0]
         :posx="positionsX[0]"
         :posy="positionsY[0]"
-        :class="opacity[0]"
+        :class="`opacity-100`"
         :milliseconds="currentTimeAnimation"
         width="w-[32rem]"
         :generate=3
-        :startQuestion=4
-        :endQuestion=18
-        :startAnswer=6
-        :endAnswer=16
+        :startQuestion=startQuestion
+        :endQuestion=endQuestion
+        :startAnswer=startAnswer
+        :endAnswer=endAnswer
       />
       <app-main-layer
-        v-if="showLayerOne"
+        :debug="debug"
+        v-if="showLayerTwo"
         :qa_obj=queueData[1]
         :posx="positionsX[1]"
         :posy="positionsY[1]"
-        :class="opacity[1]"
+        :class="`opacity-100`"
         :milliseconds="currentTimeAnimation"
         width="w-[32rem]"
         :generate=3
-        :startQuestion=4
-        :endQuestion=18
-        :startAnswer=6
-        :endAnswer=16
+        :startQuestion=startQuestion+delay
+        :endQuestion=endQuestion+delay
+        :startAnswer=startAnswer+delay
+        :endAnswer=endAnswer+delay        
       />
       <app-main-layer
-        v-if="showLayerOne"
+        :debug="debug"
+        v-if="showLayerThree"
         :qa_obj=queueData[2]
         :posx="positionsX[2]"
         :posy="positionsY[2]"
-        :class="opacity[2]"
+        :class="`opacity-100`"
         :milliseconds="currentTimeAnimation"
         width="w-[32rem]"
         :generate=3
-        :startQuestion=4
-        :endQuestion=18
-        :startAnswer=6
-        :endAnswer=16
+        :startQuestion=startQuestion+delay*2
+        :endQuestion=endQuestion+delay*2
+        :startAnswer=startAnswer+delay*2
+        :endAnswer=endAnswer+delay*2
       />
       <app-main-layer
-        v-if="showLayerOne"
+        :debug="debug"
+        v-if="showLayerFour"
         :qa_obj=queueData[3]
         :posx="positionsX[3]"
         :posy="positionsY[3]"
-        :class="opacity[3]"
+        :class="`opacity-100`"
         :milliseconds="currentTimeAnimation"
         width="w-[32rem]"
         :generate=3
-        :startQuestion=4
-        :endQuestion=18
-        :startAnswer=6
-        :endAnswer=16
+        :startQuestion=startQuestion+delay*3
+        :endQuestion=endQuestion+delay*3
+        :startAnswer=startAnswer+delay*3
+        :endAnswer=endAnswer+delay*3
       />      
     </div>
   </div>
@@ -90,20 +97,27 @@ export default {
     'app-main-layer': MainLayer,
   },
   setup() {
+    const debug = false
     const startProgram = ref(true)
     let interval = () => { }
     let startTime = null
+
+    const delay = 4
+    const startQuestion=0
+    const endQuestion=14 //parseInt(totalDurationAnimation/4)
+    const startAnswer=startQuestion+2
+    const endAnswer=endQuestion-2
+
     const timeMilliseconds = ref(0)
-    const timeXSecond = 11
-    const totalDurationAnimation = 21 // 21 segundos
+    const timeXSecond = 10
+    const totalDurationAnimation = (endQuestion+delay*3) + 5 // 21 segundos
     let currentTimeAnimation = ref(0)
     let nextFrame = ref(0)
     const privateData = reactive(dummyData)
-    const showLayerOne = ref(false)
-    const showLayerTwo = ref(false)
-    const showLayerThree = ref(false)
-    const showLayerFour = ref(false)
-    const showLayerFive = ref(false)
+    const showLayerOne = ref(true)
+    const showLayerTwo = ref(true)
+    const showLayerThree = ref(true)
+    const showLayerFour = ref(true)
 
     let positionsX = [ 'left-10p','left-30p','left-45p','left-65p']
     let positionsY = [ 'bottom-50p','bottom-60p','bottom-80p','bottom-90p']
@@ -141,47 +155,39 @@ export default {
     })
 
     watchEffect(() => {
-      console.log('time', currentTimeAnimation.value)
+      if(debug) console.log('time', currentTimeAnimation.value)
       // console.log('carechimba', value3)
       switch (currentTimeAnimation.value) {
-        case (0): {
-          showLayerFour.value = true
+        case (startQuestion): {
+          // showLayerOne.value = true
           return
         }
-        case (1): {
-          showLayerTwo.value = true
+        case (startQuestion+delay): {
+          // showLayerTwo.value = true
           return
         }
-        case (2): {
-          showLayerThree.value = true
+        case (startQuestion+delay*2): {
+          // showLayerThree.value = true
           return
         }
-        case (3): {
-          showLayerOne.value = true
+        case (startQuestion+delay*3): {
+          // showLayerFour.value = true
           return
         }
-        case (4): {
-          showLayerFive.value = true
+        case (endQuestion): {
+          // showLayerOne.value = true
           return
         }
-        case (16): {
-          showLayerFive.value = false
+        case (endQuestion+delay): {
+          // showLayerTwo.value = false
           return
         }
-        case (17): {
-          showLayerThree.value = false
+        case (endQuestion+delay*2): {
+          // showLayerThree.value = false
           return
         }
-        case (18): {
-          showLayerTwo.value = false
-          return
-        }
-        case (19): {
-          showLayerOne.value = false
-          return
-        }
-        case (20): {
-          showLayerFour.value = false
+        case (totalDurationAnimation-1): {
+          // showLayerFour.value = false
           nextFrame.value = nextFrame.value + 1
           positionsX.value = positionsX.sort(() => Math.random() -.5 )
           positionsY.value = positionsY.sort(() => Math.random() -.5 )
@@ -194,7 +200,7 @@ export default {
     watchEffect(() => {
       if (nextFrame.value) {
         const currentFrameData = nextFrame.value % privateData.length
-        console.log('CURRENT ROW', currentFrameData)
+        debug ? console.log('CURRENT ROW', currentFrameData) :
         // console.log('TOTAL ROW DATA', privateData.length)
         queueData.value = [
           privateData[(currentFrameData) % privateData.length],
@@ -205,7 +211,7 @@ export default {
       }
     })
 
-    return { queueData, startProgram, currentTimeAnimation, showLayerFour, showLayerOne, showLayerTwo, showLayerThree, showLayerFive, positionsX, positionsY, opacity }
+    return { debug, startQuestion, endQuestion, startAnswer, endAnswer, delay, queueData, startProgram, currentTimeAnimation, showLayerOne, showLayerTwo, showLayerThree, showLayerFour, positionsX, positionsY, opacity }
   }
 }
 </script>
